@@ -1,0 +1,101 @@
+---
+import Icon from '@/components/Icon.astro';
+---
+
+<section
+  id="inicio"
+  class="flex min-h-screen items-center bg-gradient-to-br from-blue-50 to-indigo-100 pt-20"
+>
+  <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+      <div class="grid gap-8">
+        <div class="flex items-center">
+          <div class="flex text-yellow-400">
+            {[...Array(5)].map(_ => <Icon name="star-filled" class="size-5" />)}
+          </div>
+          <span class="ml-2 font-medium text-gray-600"
+            >4.9/5 • +200 clientes satisfechos</span
+          >
+        </div>
+
+        <h1 class="text-4xl font-bold text-gray-900 md:text-6xl">
+          Reparación y Manteniemiento de
+          <span
+            class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+            style="
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            Electrónica</span
+          >
+          <br />
+          Profesional
+        </h1>
+
+        <p class="text-xl leading-relaxed text-gray-600">
+          Especialistas en reparación de celulares, PlayStation, joysticks,
+          parlantes y notebooks. Diagnóstico gratuito y garantía en todos
+          nuestros trabajos.
+        </p>
+
+        <div class="flex flex-wrap gap-4 *:min-w-fit *:flex-1">
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex transform items-center justify-center gap-2 rounded-lg bg-green-500 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-green-600"
+          >
+            <Icon name="whatsapp" class="size-5" />
+            Consultar por WhatsApp
+          </a>
+          <a
+            href="#trabajos"
+            class="grid place-content-center rounded-lg border border-blue-600 bg-white px-8 py-4 font-semibold text-blue-600 transition-colors hover:bg-gray-50"
+          >
+            Ver Trabajos Realizados
+          </a>
+        </div>
+
+        <div class="grid grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="mx-auto mb-2 w-fit rounded-full bg-white p-3 shadow-md">
+              <Icon name="award" class="text-blue-600" />
+            </div>
+            <div class="text-2xl font-bold text-gray-900">+5</div>
+            <div class="text-sm text-gray-600">Años de experiencia</div>
+          </div>
+          <div class="text-center">
+            <div class="mx-auto mb-2 w-fit rounded-full bg-white p-3 shadow-md">
+              <Icon name="clock" class="text-green-600" />
+            </div>
+            <div class="text-2xl font-bold text-gray-900">24-48h</div>
+            <div class="text-sm text-gray-600">Tiempo promedio</div>
+          </div>
+          <div class="text-center">
+            <div class="mx-auto mb-2 w-fit rounded-full bg-white p-3 shadow-md">
+              <Icon name="star" class="text-yellow-500" />
+            </div>
+            <div class="text-2xl font-bold text-gray-900">100%</div>
+            <div class="text-sm text-gray-600">Garantizado</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="rounded-2xl bg-white p-8 shadow-2xl">
+          <img
+            src="https://images.pexels.com/photos/1173777/pexels-photo-1173777.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Reparación de dispositivos electrónicos"
+            class="h-96 w-full rounded-lg object-cover"
+          />
+          <div
+            class="absolute -top-4 -right-4 rounded-full bg-orange-500 p-4 text-white shadow-lg"
+          >
+            <span class="text-sm font-bold">¡Diagnóstico GRATIS!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

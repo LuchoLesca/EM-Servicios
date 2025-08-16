@@ -1,0 +1,145 @@
+---
+import { CATEGORIES } from '@/consts/categories';
+import { REPAIRS } from '@/consts/repairs';
+import capitalize from '@/utils/capitalize';
+import Icon from '@/components/Icon.astro';
+
+const filteredRepairs = REPAIRS; // Default to all repairs
+
+// const filteredRepairs = currentCategory === 'Todos'
+//   ? repairs
+//   : repairs.filter(repair => repair.category === currentCategory);
+---
+
+<section id="trabajos" class="bg-gray-50 py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+        Trabajos Realizados
+      </h2>
+      <p class="mx-auto mb-8 max-w-3xl text-xl text-gray-600">
+        Aquí puedes ver algunos de nuestros trabajos más recientes con detalles
+        del proceso de reparación y resultados obtenidos.
+      </p>
+
+      {/* Category Filter */}
+      <div class="mb-12 flex flex-wrap justify-center gap-4">
+        {
+          CATEGORIES.map(category => (
+            <button
+              class={`rounded-full bg-blue-600 px-6 py-2 text-white shadow-lg transition-all`}
+            >
+              {capitalize(category)}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        filteredRepairs.map(repair => (
+          <div class="group overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-xl">
+            <div class="relative overflow-hidden">
+              <div class="grid h-48 grid-cols-2">
+                <div class="relative">
+                  <img
+                    src={repair.before}
+                    alt={`${repair.title} - Antes`}
+                    class="h-full w-full object-cover"
+                  />
+                  <div class="absolute bottom-2 left-2 rounded bg-red-500 px-2 py-1 text-xs text-white">
+                    Antes
+                  </div>
+                </div>
+                <div class="relative">
+                  <img
+                    src={repair.after}
+                    alt={`${repair.title} - Después`}
+                    class="h-full w-full object-cover"
+                  />
+                  <div class="absolute right-2 bottom-2 rounded bg-green-500 px-2 py-1 text-xs text-white">
+                    Después
+                  </div>
+                </div>
+              </div>
+              <button class="bg-opacity-0 group-hover:bg-opacity-50 absolute inset-0 flex items-center justify-center bg-black transition-all duration-300">
+                <Icon
+                  name="eye"
+                  class="size-8 text-white opacity-0 transition-opacity group-hover:opacity-100"
+                />
+              </button>
+            </div>
+
+            <div class="p-6">
+              <div class="mb-2 flex items-center justify-between">
+                <span class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-800">
+                  {capitalize(repair.category)}
+                </span>
+                <span class="text-sm text-gray-500">{repair.time}</span>
+              </div>
+              <h3 class="mb-2 text-lg font-semibold text-gray-900">
+                {repair.title}
+              </h3>
+              <p class="text-sm leading-relaxed text-gray-600">
+                {repair.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Modal */}
+    <!-- {selectedRepair && (
+          <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900">{selectedRepair.title}</h3>
+                    <span class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
+                      {selectedRepair.category}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setSelectedRepair(null)}
+                    class="text-gray-400 hover:text-gray-600 text-2xl"
+                  >
+                    ×
+                  </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                  <div>
+                    <h4 class="text-lg font-semibold mb-3 text-red-600">Antes de la reparación</h4>
+                    <img 
+                      src={selectedRepair.before} 
+                      alt={`${selectedRepair.title} - Antes`}
+                      class="w-full h-64 object-cover rounded-lg"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-semibold mb-3 text-green-600">Después de la reparación</h4>
+                    <img 
+                      src={selectedRepair.after} 
+                      alt={`${selectedRepair.title} - Después`}
+                      class="w-full h-64 object-cover rounded-lg"
+                    />
+                  </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                  <h4 class="text-lg font-semibold mb-3">Detalles del trabajo realizado</h4>
+                  <p class="text-gray-700 leading-relaxed mb-4">{selectedRepair.description}</p>
+                  <div class="flex items-center text-sm text-gray-600">
+                    <span class="font-medium">Tiempo de reparación: </span>
+                    <span class="ml-2">{selectedRepair.time}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )} -->
+  </div>
+</section>

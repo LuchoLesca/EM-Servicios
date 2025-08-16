@@ -1,0 +1,111 @@
+---
+import { NAV_LINKS } from '@/consts/navLinks';
+import Icon from '@/components/Icon.astro';
+---
+
+<header class="sticky top-0 z-50 w-full bg-white shadow-md">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {/* Header content */}
+    <div class="flex items-center justify-between py-4">
+      {/* Brand */}
+      <div class="flex items-center">
+        <div
+          class="rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 p-2 text-white"
+        >
+          <Icon name="phone" />
+        </div>
+        <div class="ml-3">
+          <h1 class="text-xl font-bold text-gray-900">EM Servicios</h1>
+          <p class="text-sm text-gray-600">Reparación y mantenimiento</p>
+        </div>
+      </div>
+
+      {/* Mavigation */}
+      <nav
+        aria-label="Navegacion principal"
+        class="flex items-center justify-center"
+      >
+        {/* Mobile Menu Button */}
+        <button
+          id="menu-button"
+          class="size-6 md:hidden"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <span class="sr-only">Menu</span>
+        </button>
+
+        {/* Menu */}
+        <ul
+          id="primary-navigation"
+          class="absolute inset-0 top-full h-fit border-t bg-white p-4 shadow md:relative md:border-none md:p-0 md:shadow-none"
+        >
+          {
+            NAV_LINKS.map(link => (
+              <li>
+                <a
+                  class="block p-2 font-semibold text-gray-700 transition-colors hover:bg-gray-100 hover:text-blue-600 md:px-4"
+                  href={link.href}
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))
+          }
+          <li class="mt-4 md:mt-0 md:ml-4">
+            <a
+              href="https://wa.me/1234567890"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex w-fit items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-white transition-colors hover:bg-green-600"
+            >
+              <Icon name="whatsapp" class="size-4" />
+              WhatsApp
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <script>
+    const menuButton = document.querySelector(
+      '#menu-button'
+    ) as HTMLButtonElement;
+    menuButton?.addEventListener('click', function () {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!isExpanded));
+    });
+  </script>
+</header>
+
+<style>
+  [aria-expanded] {
+    border: none;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: cover;
+  }
+
+  [aria-expanded='false'] {
+    background-image: url('src/assets/icons/x.svg');
+  }
+
+  [aria-expanded='true'] {
+    background-image: url('src/assets/icons/menu.svg');
+  }
+
+  @media screen and (width <= 768px) {
+    [aria-expanded='false'] ~ #primary-navigation {
+      display: none;
+    }
+  }
+
+  @media screen and (width > 768px) {
+    #primary-navigation {
+      display: flex;
+    }
+  }
+</style>

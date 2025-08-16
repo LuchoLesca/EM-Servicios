@@ -1,0 +1,35 @@
+---
+import Icon from '@/components/Icon.astro';
+---
+
+<div class="fixed right-6 bottom-6 z-40 flex flex-col gap-4">
+  <a
+    href="https://wa.me/1234567890"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="group rounded-full bg-green-500 p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-green-600"
+    title="Contactar por WhatsApp"
+  >
+    <Icon name="whatsapp" />
+    <div
+      class="absolute top-1/2 right-full mr-3 -translate-y-1/2 transform rounded-lg bg-green-500 px-3 py-1 text-sm whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100"
+    >
+      Escribinos por WhatsApp
+    </div>
+  </a>
+
+  <a
+    href="https://instagram.com/techrepairpro"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="group rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:from-purple-600 hover:to-pink-600"
+    title="Seguinos en Instagram"
+  >
+    <Icon name="instagram" />
+    <div
+      class="absolute top-1/2 right-full mr-3 -translate-y-1/2 transform rounded-lg bg-purple-500 px-3 py-1 text-sm whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100"
+    >
+      Seguinos en Instagram
+    </div>
+  </a>
+</div>
