@@ -9,10 +9,8 @@ import Icon from '@/components/Icon.astro';
     <div class="flex items-center justify-between py-4">
       {/* Brand */}
       <div class="flex items-center">
-        <div
-          class="rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 p-2 text-white"
-        >
-          <Icon name="phone" />
+        <div class="text-black">
+          <Icon name="logo" class="size-12" />
         </div>
         <div class="ml-3">
           <h1 class="text-xl font-bold text-gray-900">EM Servicios</h1>
@@ -67,17 +65,17 @@ import Icon from '@/components/Icon.astro';
       </nav>
     </div>
   </div>
-
-  <script>
-    const menuButton = document.querySelector(
-      '#menu-button'
-    ) as HTMLButtonElement;
-    menuButton?.addEventListener('click', function () {
-      const isExpanded = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', String(!isExpanded));
-    });
-  </script>
 </header>
+
+<script>
+  const menuButton = document.querySelector(
+    '#menu-button'
+  ) as HTMLButtonElement;
+  menuButton?.addEventListener('click', function () {
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', String(!isExpanded));
+  });
+</script>
 
 <style>
   #menu-button[aria-expanded] {
