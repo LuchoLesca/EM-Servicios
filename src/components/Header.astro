@@ -80,30 +80,27 @@ import Icon from '@/components/Icon.astro';
 </header>
 
 <style>
-  [aria-expanded] {
+  #menu-button[aria-expanded] {
     border: none;
     cursor: pointer;
     background-position: center;
     background-repeat: no-repeat;
     background-color: transparent;
     background-size: cover;
-  }
-
-  [aria-expanded='false'] {
     background-image: url('src/assets/icons/x.svg');
   }
 
-  [aria-expanded='true'] {
+  #menu-button[aria-expanded='true'] {
     background-image: url('src/assets/icons/menu.svg');
   }
 
-  @media screen and (width <= 768px) {
-    [aria-expanded='false'] ~ #primary-navigation {
+  @media screen and (width <= 48rem) {
+    #menu-button[aria-expanded='false'] ~ #primary-navigation {
       display: none;
     }
   }
 
-  @media screen and (width > 768px) {
+  @media screen and (width > 48rem) {
     #primary-navigation {
       display: flex;
     }
