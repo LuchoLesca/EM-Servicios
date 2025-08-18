@@ -26,7 +26,7 @@ import Icon from '@/components/Icon.astro';
         {/* Mobile Menu Button */}
         <button
           id="menu-button"
-          class="size-6 md:hidden"
+          class="size-8 md:hidden"
           aria-expanded="false"
           aria-controls="primary-navigation"
         >
@@ -85,11 +85,11 @@ import Icon from '@/components/Icon.astro';
     background-repeat: no-repeat;
     background-color: transparent;
     background-size: cover;
-    background-image: url('src/assets/icons/x.svg');
+    background-image: url('/src/assets/icons/x.svg');
   }
 
   #menu-button[aria-expanded='true'] {
-    background-image: url('src/assets/icons/menu.svg');
+    background-image: url('/src/assets/icons/menu.svg');
   }
 
   @media screen and (width <= 48rem) {
