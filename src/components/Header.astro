@@ -1,6 +1,7 @@
 ---
 import { NAV_LINKS } from '@/consts/navLinks';
 import Icon from '@/components/Icon.astro';
+import { SOCIALS } from '@/consts/socials';
 ---
 
 <header class="sticky top-0 z-50 w-full bg-white shadow-md">
@@ -52,7 +53,7 @@ import Icon from '@/components/Icon.astro';
           }
           <li class="mt-4 md:mt-0 md:ml-4">
             <a
-              href="https://wa.me/1234567890"
+              href={SOCIALS.find(social => social.name === 'whatsapp')?.url}
               target="_blank"
               rel="noopener noreferrer"
               class="flex w-fit items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-white transition-colors hover:bg-green-600"

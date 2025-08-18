@@ -1,23 +1,15 @@
 ---
 import Icon from '@/components/Icon.astro';
+import { SOCIALS } from '@/consts/socials';
 ---
 
 <section
   id="inicio"
-  class="flex min-h-screen items-center bg-gradient-to-br from-blue-50 to-indigo-100 pt-20"
+  class="flex min-h-screen items-center bg-gradient-to-br from-blue-50 to-indigo-100"
 >
-  <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
       <div class="grid gap-8">
-        <div class="flex items-center">
-          <div class="flex text-yellow-400">
-            {[...Array(5)].map(_ => <Icon name="star-filled" class="size-5" />)}
-          </div>
-          <span class="ml-2 font-medium text-gray-600"
-            >4.9/5 • +200 clientes satisfechos</span
-          >
-        </div>
-
         <h1 class="text-4xl font-bold text-gray-900 md:text-6xl">
           Reparación y Manteniemiento de
           <span
@@ -41,7 +33,7 @@ import Icon from '@/components/Icon.astro';
 
         <div class="flex flex-wrap gap-4 *:min-w-fit *:flex-1">
           <a
-            href="https://wa.me/1234567890"
+            href={SOCIALS.find(social => social.name === 'whatsapp')?.url}
             target="_blank"
             rel="noopener noreferrer"
             class="flex transform items-center justify-center gap-2 rounded-lg bg-green-500 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-green-600"
