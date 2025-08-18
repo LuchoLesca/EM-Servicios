@@ -1,6 +1,59 @@
 import { type Repair } from '@/types/repair';
 
-export const REPAIRS: Repair[] = [
+const unsplashPhotos = [
+  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
+];
+
+const a: Repair[] = [
   {
     id: 1,
     title: 'iPhone 13 Pro - Cambio de Pantalla',
@@ -74,3 +127,15 @@ export const REPAIRS: Repair[] = [
     time: '1 hora',
   },
 ];
+
+const REPAIRS = a.map((repair, i) => {
+  return {
+    ...repair,
+    before: unsplashPhotos[(i * 2) % unsplashPhotos.length],
+    after: unsplashPhotos[(i * 2 + 1) % unsplashPhotos.length],
+  };
+  // repair.before = unsplashPhotos[(i * 2) % unsplashPhotos.length];
+  // repair.after = unsplashPhotos[(i * 2 + 1) % unsplashPhotos.length];
+});
+
+export { REPAIRS };
