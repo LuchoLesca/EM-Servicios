@@ -13,7 +13,8 @@
     "format:check": "prettier --check .",
     "type-check": "astro check",
     "check:all": "npm run type-check && npm run lint && npm run format:check",
-    "generate:images": "node ./src/js/scripts/transform-imgs.mjs"
+    "generate:images": "node ./src/js/scripts/transform-imgs.mjs",
+    "normalize-file-names": "node ./src/scipts/normalize-file-name.js"
   },
   "dependencies": {
     "@lucide/astro": "0.539.0",
