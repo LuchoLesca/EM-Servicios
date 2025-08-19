@@ -1,141 +1,88 @@
 import { type Repair } from '@/types/repair';
 
-const unsplashPhotos = [
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=600&h=400&fit=crop',
-];
+const baseUrl = 'src/assets/imgs/repairs/formatted/';
 
-const a: Repair[] = [
+const REPAIRS: Repair[] = [
   {
     id: 1,
-    title: 'iPhone 13 Pro - Cambio de Pantalla',
-    category: 'celulares',
-    before:
-      'https://images.pexels.com/photos/1251861/pexels-photo-1251861.jpeg?auto=compress&cs=tinysrgb&w=400',
-    after:
-      'https://images.pexels.com/photos/1851415/pexels-photo-1851415.jpeg?auto=compress&cs=tinysrgb&w=400',
+    title: 'Xbox Series X - Reparación de Botón RB',
+    category: 'controles',
+    after: `${baseUrl}arreglo-de-boton-rb-en-control-de-xbox-series-x-1.webp`,
+    before: `${baseUrl}arreglo-de-boton-rb-en-control-de-xbox-series-x.webp`,
     description:
-      'Reparación completa de pantalla rota con reemplazo de display OLED original. Incluye calibración táctil y pruebas de funcionalidad.',
-    time: '2 horas',
+      'Reemplazo del botón RB atascado. Incluye limpieza interna y pruebas de funcionalidad completa.',
+    time: '5 horas',
   },
   {
     id: 2,
-    title: 'PlayStation 5 - Limpieza y Mantenimiento',
-    category: 'consolas',
-    before:
-      'https://images.pexels.com/photos/3945657/pexels-photo-3945657.jpeg?auto=compress&cs=tinysrgb&w=400',
-    after:
-      'https://images.pexels.com/photos/7915434/pexels-photo-7915434.jpeg?auto=compress&cs=tinysrgb&w=400',
+    title: 'Xbox Series X - Reparación de Botón RB',
+    category: 'controles',
+    after: `${baseUrl}cambio-de-analogico-joystick-1.webp`,
+    before: `${baseUrl}cambio-de-analogico-joystick.webp`,
     description:
-      'Limpieza profunda del sistema de ventilación, cambio de pasta térmica y optimización del rendimiento. Reducción de ruido significativa.',
-    time: '4 horas',
-  },
-  {
-    id: 3,
-    title: 'Samsung Galaxy S22 - Reparación de Cámara',
-    category: 'celulares',
-    before:
-      'https://images.pexels.com/photos/1765031/pexels-photo-1765031.jpeg?auto=compress&cs=tinysrgb&w=400',
-    after:
-      'https://images.pexels.com/photos/1667088/pexels-photo-1667088.jpeg?auto=compress&cs=tinysrgb&w=400',
-    description:
-      'Reemplazo del módulo de cámara trasera principal. Calibración y pruebas de enfoque automático y estabilización.',
+      'Reemplazo del joystick analógico izquierdo por desgaste. Incluye calibración y pruebas de respuesta',
     time: '1.5 horas',
   },
   {
-    id: 4,
-    title: 'MacBook Air - Cambio de Batería',
-    category: 'notebooks',
-    before:
-      'https://images.pexels.com/photos/1252814/pexels-photo-1252814.jpeg?auto=compress&cs=tinysrgb&w=400',
-    after:
-      'https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=400',
+    id: 3,
+    title: 'Xiaomi Redmi Note 8 Pro - Cambio de Módulo de Carga',
+    category: 'celulares',
+    after: `${baseUrl}cambio-de-modulo-para-este-xiaomi-redmi-mi-9t-1.webp`,
+    before: `${baseUrl}cambio-de-modulo-para-este-xiaomi-redmi-mi-9t.webp`,
     description:
-      'Reemplazo de batería hinchada por una nueva original. Incluye calibración del sistema y verificación de ciclos de carga.',
-    time: '3 horas',
+      'Reemplazo del módulo de carga defectuoso. Incluye pruebas de carga y verificación de puertos.',
+    time: '2 horas',
+  },
+  {
+    id: 4,
+    title: 'Xiaomi Redmi Mi 9T - Reparación de Módulo de Carga',
+    category: 'celulares',
+    after: `${baseUrl}cambio-de-modulo-para-xiaomi-redmi-note-8-pro-1.webp`,
+    before: `${baseUrl}cambio-de-modulo-para-xiaomi-redmi-note-8-pro.webp`,
+    description:
+      'Reemplazo del módulo de carga defectuoso. Incluye pruebas de carga y verificación de puertos.',
+    time: '2 horas',
   },
   {
     id: 5,
-    title: 'JBL Charge 4 - Reparación de Conectividad',
-    category: 'parlantes',
-    before:
-      'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400',
-    after:
-      'https://images.pexels.com/photos/6373478/pexels-photo-6373478.jpeg?auto=compress&cs=tinysrgb&w=400',
+    title: 'Joystick PS4 - Reparación de Pin de Carga',
+    category: 'controles',
+    after: `${baseUrl}cambio-de-pin-de-carga-que-estaba-en-corto-y-se-revivio-la-bateria-para-este-joystic-de-ps4-1.webp`,
+    before: `${baseUrl}cambio-de-pin-de-carga-que-estaba-en-corto-y-se-revivio-la-bateria-para-este-joystic-de-ps4.webp`,
     description:
-      'Reparación del módulo Bluetooth y puerto USB-C. Restauración completa de la conectividad inalámbrica y carga rápida.',
-    time: '2.5 horas',
+      'Reparación del pin de carga en corto. Incluye resoldado de placa y restauración de la batería interna.',
+    time: '3 horas',
   },
   {
     id: 6,
-    title: 'DualSense PS5 - Joystick Analógico',
-    category: 'controles',
-    before:
-      'https://images.pexels.com/photos/3945673/pexels-photo-3945673.jpeg?auto=compress&cs=tinysrgb&w=400',
-    after:
-      'https://images.pexels.com/photos/7915437/pexels-photo-7915437.jpeg?auto=compress&cs=tinysrgb&w=400',
+    title: 'iPhone 8 - Cambio de Tapa Trasera',
+    category: 'celulares',
+    after: `${baseUrl}cambio-de-tapa-trasera-de-iphone-8el-repuesto-ya-lo-tenia-el-cliente-1.webp`,
+    before: `${baseUrl}cambio-de-tapa-trasera-de-iphone-8el-repuesto-ya-lo-tenia-el-cliente.webp`,
     description:
-      'Reemplazo de joystick analógico derecho por drift. Incluye calibración y pruebas de respuesta háptica.',
-    time: '1 hora',
+      'Reemplazo de tapa trasera agrietada. Incluye limpieza interna y verificación de sellos contra agua.',
+    time: '2 horas',
+  },
+  {
+    id: 7,
+    title: 'Netbook G5 - Desbloqueo de Arranques',
+    category: 'notebooks',
+    after: `${baseUrl}desbloqueo-de-arranques-en-netbook-del-gobierno-modelo-g5-1.webp`,
+    before: `${baseUrl}desbloqueo-de-arranques-en-netbook-del-gobierno-modelo-g5.webp`,
+    description:
+      'Desbloqueo del sistema de arranque seguro. Incluye reinstalación del sistema operativo y optimización.',
+    time: '4 horas',
+  },
+  {
+    id: 8,
+    title: 'PS3 Super Slim - Mantenimiento Completo',
+    category: 'consolas',
+    after: `${baseUrl}mantenimiento-completo-para-ps3-super-slim-1.webp`,
+    before: `${baseUrl}mantenimiento-completo-para-ps3-super-slim.webp`,
+    description:
+      'Mantenimiento integral con limpieza interna, cambio de pasta térmica y revisión de componentes.',
+    time: '5 horas',
   },
 ];
-
-const REPAIRS = a.map((repair, i) => {
-  return {
-    ...repair,
-    before: unsplashPhotos[(i * 2) % unsplashPhotos.length],
-    after: unsplashPhotos[(i * 2 + 1) % unsplashPhotos.length],
-  };
-  // repair.before = unsplashPhotos[(i * 2) % unsplashPhotos.length];
-  // repair.after = unsplashPhotos[(i * 2 + 1) % unsplashPhotos.length];
-});
 
 export { REPAIRS };
