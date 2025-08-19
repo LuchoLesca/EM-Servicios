@@ -169,12 +169,12 @@ import CategoryFilter from './CategoryFilter.astro';
   const jobCards = document.querySelectorAll<HTMLElement>('.job-card');
   const noResults = document.querySelector('#no-results');
 
-  const modal = document.getElementById('repair-modal');
-  const closeModal = document.getElementById('close-modal');
+  const modal = document.querySelector<HTMLDivElement>('#repair-modal');
+  const closeModal = document.querySelector<HTMLButtonElement>('#close-modal');
 
-  section?.addEventListener('filter-category-change', event => {
-    const category = event.detail.category;
-    // console.log(`Category changed to: ${category}`);
+  section?.addEventListener('filter-category-change', (event: Event) => {
+    const customEvent = event as CustomEvent<{ category: string }>;
+    const category = customEvent.detail.category;
 
     let visibleCount = 0;
     jobCards.forEach(card => {
@@ -202,18 +202,28 @@ import CategoryFilter from './CategoryFilter.astro';
       const repair = REPAIRS.find(r => r.id === repairId);
 
       if (repair) {
-        document.getElementById('modal-title').textContent = repair.title;
-        document.getElementById('modal-category').textContent = capitalize(
-          repair.category
-        );
-        document.getElementById('modal-before').src = repair.before;
-        document.getElementById('modal-after').src = repair.after;
-        document.getElementById('modal-description').textContent =
-          repair.description;
-        document.getElementById('modal-time').textContent = repair.time;
+        const title =
+          document.querySelector<HTMLHeadingElement>('#modal-title');
+        const category =
+          document.querySelector<HTMLSpanElement>('#modal-category');
+        const before =
+          document.querySelector<HTMLImageElement>('#modal-before');
+        const after = document.querySelector<HTMLImageElement>('#modal-after');
+        const description =
+          document.querySelector<HTMLParagraphElement>('#modal-description');
+        const time = document.querySelector<HTMLSpanElement>('#modal-time');
 
-        modal?.classList.remove('hidden');
-        modal?.classList.add('flex');
+        if (title && category && before && after && description && time) {
+          title.textContent = repair.title;
+          category.textContent = capitalize(repair.category);
+          before.src = repair.before;
+          after.src = repair.after;
+          description.textContent = repair.description;
+          time.textContent = repair.time;
+
+          modal?.classList.remove('hidden');
+          modal?.classList.add('flex');
+        }
       }
     });
   });
