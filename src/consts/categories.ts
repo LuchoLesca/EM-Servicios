@@ -1,5 +1,4 @@
 export const CATEGORIES = [
-  'todos',
   'celulares',
   'consolas',
   'notebooks',
