@@ -1,6 +1,6 @@
 import { type Repair } from '@/types/repair';
 
-const baseUrl = '/src/assets/imgs/repairs/formatted/';
+const baseUrl = '/assets/imgs/repairs/formatted/';
 
 const REPAIRS: Repair[] = [
   {
