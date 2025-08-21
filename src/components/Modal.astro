@@ -1,0 +1,87 @@
+---
+import Carousel from '@/components/Carousel.astro';
+import Icon from '@/components/Icon.astro';
+---
+
+<dialog
+  id="modal"
+  class="m-auto w-[calc(100%-2rem)] max-w-4xl overflow-hidden rounded-md border-none bg-white backdrop:bg-black"
+>
+  {/* Header */}
+  <div class="flex items-start justify-between gap-2 p-3 md:p-6">
+    <h3 id="modal-title" class="text-xl font-bold text-gray-900 md:text-2xl">
+    </h3>
+    <button id="close-modal">
+      <Icon name="x" class="size-8 md:size-10" />
+    </button>
+  </div>
+
+  {/* Images */}
+  <div>
+    <Carousel />
+  </div>
+
+  {/* description */}
+  <div
+    class="flow rounded-lg bg-gray-50 p-3 md:p-6"
+    style="--flow-space: 0.5em"
+  >
+    <h4 class="text-lg font-semibold">Trabajo realizado:</h4>
+    <p id="modal-description" class="leading-tight text-gray-700"></p>
+    <div class="flex items-center text-sm text-gray-600">
+      <span class="font-medium">Tiempo de reparación: </span>
+      <span id="modal-time" class="ml-2"></span>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const modal = document.querySelector<HTMLDialogElement>('#modal');
+  const closeModal = document.querySelector<HTMLButtonElement>('#close-modal');
+
+  // Close button
+  closeModal?.addEventListener('click', () => modal?.close());
+
+  // Close modal on backdrop click
+  modal?.addEventListener('click', e => {
+    const rect = modal.getBoundingClientRect();
+    // Click fuera del contenido
+    const isOutside =
+      e.clientY < rect.top ||
+      e.clientY > rect.bottom ||
+      e.clientX < rect.left ||
+      e.clientX > rect.right;
+    if (isOutside && !isDragging) {
+      modal.close();
+    }
+  });
+
+  modal?.addEventListener('close', () => (document.body.style.overflow = ''));
+
+  // Protect close modal when click of drag finish in backdrop
+  let isDragging = false;
+  modal?.addEventListener('mousedown', () => (isDragging = false));
+  modal?.addEventListener('mousemove', () => (isDragging = true));
+</script>
+
+<style>
+  dialog {
+    transition: opacity 0.3s ease-in-out; 
+    opacity: 0;
+  }
+
+  dialog[open] {
+    opacity: 1;
+    @starting-style {
+      opacity: 0;
+    }
+
+  dialog::backdrop {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+  }
+
+  dialog[open]::backdrop {
+    opacity: 0.8;
+  }
+</style>
