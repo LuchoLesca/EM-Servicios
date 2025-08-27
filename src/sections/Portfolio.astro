@@ -108,7 +108,6 @@ import Modal from '@/components/Modal.astro';
       }
     });
 
-    // Mostrar/ocultar mensaje de no resultados
     if (visibleCount === 0) {
       noResults?.classList.remove('hidden');
     } else {
@@ -154,14 +153,12 @@ import Modal from '@/components/Modal.astro';
       const time = document.querySelector('#modal-time');
 
       if (!isSameRepair) {
-        // Actualizar texto
         if (title) title.textContent = repairData.title;
         if (description) description.textContent = repairData.description;
         if (time) time.textContent = repairData.time;
 
-        // Preload de imágenes y reemplazo del carousel
+        // Image preload and replace on carousel
         const urls = repairData.imgs.all;
-
         preloadImages(urls)
           .then(images => {
             if (!carouselContainer) return;
