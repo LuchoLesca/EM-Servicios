@@ -38,13 +38,13 @@ import capitalize from '@/utils/capitalize';
         {/* Menu */}
         <ul
           id="primary-navigation"
-          class="absolute inset-0 top-full h-fit border-t bg-white p-4 shadow md:relative md:border-none md:p-0 md:shadow-none"
+          class="absolute inset-0 top-full h-fit divide-y border-t bg-white p-4 pt-0 shadow md:relative md:flex md:items-center md:divide-none md:border-none md:p-0 md:shadow-none"
         >
           {
             ROUTES.map(({ href, name }) => (
               <li>
                 <a
-                  class="block p-2 font-semibold text-gray-700 transition-colors hover:bg-gray-100 hover:text-blue-600 md:px-4"
+                  class="block p-3 font-medium text-gray-700 transition-colors hover:bg-gray-100 md:px-4 md:py-2"
                   href={href}
                 >
                   {capitalize(name)}
@@ -73,10 +73,13 @@ import capitalize from '@/utils/capitalize';
   const menuButton = document.querySelector(
     '#menu-button'
   ) as HTMLButtonElement;
-  menuButton?.addEventListener('click', () => {
+
+  function toggleMenu() {
     const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
     menuButton.setAttribute('aria-expanded', String(!isExpanded));
-  });
+  }
+
+  menuButton?.addEventListener('click', toggleMenu);
 </script>
 
 <style>
