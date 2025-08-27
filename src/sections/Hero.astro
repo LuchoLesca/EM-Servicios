@@ -1,15 +1,13 @@
 ---
 import Icon from '@/components/Icon.astro';
-import { SOCIALS } from '@/consts/socials';
+import { PHONE_INFO } from '@/consts/contactInfo';
+import cn from '@/utils/cn';
 ---
 
-<section
-  id="inicio"
-  class="flex min-h-screen items-center bg-gradient-to-br from-blue-50 to-indigo-100"
->
-  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+<section {...Astro.props}>
+  <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-      <div class="grid gap-8">
+      <div class="flow-8">
         <h1 class="text-4xl font-bold text-gray-900 md:text-6xl">
           Reparación y Manteniemiento de
           <span
@@ -31,19 +29,22 @@ import { SOCIALS } from '@/consts/socials';
           nuestros trabajos.
         </p>
 
-        <div class="flex flex-wrap gap-4 *:min-w-fit *:flex-1">
+        <div class="flex flex-wrap gap-4">
           <a
-            href={SOCIALS.find(social => social.name === 'whatsapp')?.url}
+            href={PHONE_INFO.href}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex transform items-center justify-center gap-2 rounded-lg bg-green-500 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-green-600"
+            class={cn(
+              'flex min-w-fit flex-1 transform items-center justify-center gap-2 rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105',
+              PHONE_INFO.styles.callToAction
+            )}
           >
             <Icon name="whatsapp" class="size-5" />
             Consultar por WhatsApp
           </a>
           <a
             href="#trabajos"
-            class="grid place-content-center rounded-lg border border-blue-600 bg-white px-8 py-4 font-semibold text-blue-600 transition-colors hover:bg-gray-50"
+            class="grid min-w-fit flex-1 place-content-center rounded-lg border border-blue-600 bg-white px-8 py-4 font-semibold text-blue-600 transition-colors hover:bg-gray-50"
           >
             Ver Trabajos Realizados
           </a>
@@ -51,21 +52,21 @@ import { SOCIALS } from '@/consts/socials';
 
         <div class="grid grid-cols-3 gap-8">
           <div class="text-center">
-            <div class="mx-auto mb-2 w-fit rounded-full bg-white p-3 shadow-md">
+            <div class="mx-auto w-fit rounded-full bg-white p-3 shadow-md">
               <Icon name="award" class="text-blue-600" />
             </div>
             <div class="text-2xl font-bold text-gray-900">+5</div>
             <div class="text-sm text-gray-600">Años de experiencia</div>
           </div>
           <div class="text-center">
-            <div class="mx-auto mb-2 w-fit rounded-full bg-white p-3 shadow-md">
+            <div class="mx-auto w-fit rounded-full bg-white p-3 shadow-md">
               <Icon name="clock" class="text-green-600" />
             </div>
             <div class="text-2xl font-bold text-gray-900">24-48h</div>
             <div class="text-sm text-gray-600">Tiempo promedio</div>
           </div>
           <div class="text-center">
-            <div class="mx-auto mb-2 w-fit rounded-full bg-white p-3 shadow-md">
+            <div class="mx-auto w-fit rounded-full bg-white p-3 shadow-md">
               <Icon name="star" class="text-yellow-500" />
             </div>
             <div class="text-2xl font-bold text-gray-900">100%</div>

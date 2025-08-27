@@ -1,0 +1,44 @@
+---
+import { SERVICES } from '@/consts/services';
+import Icon from '@/components/Icon.astro';
+---
+
+<section {...Astro.props}>
+  <div class="flow-8 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="flow text-center">
+      <h2 class="text-3xl font-bold text-gray-900 md:text-4xl">
+        Nuestros Servicios
+      </h2>
+      <p class="mx-auto max-w-3xl text-xl text-gray-600">
+        Ofrecemos reparación profesional para todo tipo de dispositivos
+        electrónicos con garantía y los mejores tiempos de entrega.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+      {
+        SERVICES.map(service => {
+          return (
+            <div class="flow rounded-xl border border-gray-300 bg-gradient-to-br from-gray-50 to-white p-6 transition-all duration-300 hover:-translate-y-2 hover:transform hover:shadow-lg">
+              <div class="w-fit rounded-lg bg-blue-100 p-3">
+                <Icon name={service.icon} class="h-8 w-8 text-blue-600" />
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900">
+                {service.title}
+              </h3>
+              <p class="text-gray-600">{service.description}</p>
+              <ul class="flow-2">
+                {service.features.map(feature => (
+                  <li class="flex items-center gap-2 text-sm text-gray-600">
+                    <div class="size-1.5 rounded-full bg-blue-600" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

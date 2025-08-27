@@ -1,0 +1,84 @@
+---
+import Icon from '@/components/Icon.astro';
+import {
+  IG_INFO,
+  PHONE_INFO,
+  ADDRESS_INFO,
+  SCHEDULE_INFO,
+  EMAIL_INFO,
+} from '@/consts/contactInfo';
+import capitalize from '@/utils/capitalize';
+import cn from '@/utils/cn';
+import Form from '@/components/Form.astro';
+---
+
+<section {...Astro.props}>
+  <div class="flow-12 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid justify-items-center gap-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 md:text-4xl">Contactanos</h2>
+      <p class="max-w-3xl text-xl text-gray-600">
+        Estamos aquí para ayudarte. Contáctanos por WhatsApp, Instagram o
+        visitanos en nuestro taller.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+      <div class="flow-6">
+        <h3 class="text-2xl font-bold text-gray-900">
+          Información de Contacto
+        </h3>
+
+        <div class="flow-4">
+          {
+            [ADDRESS_INFO, PHONE_INFO, SCHEDULE_INFO, EMAIL_INFO].map(
+              contact => (
+                <div class="flex items-start gap-4">
+                  <div class={cn('rounded-lg p-3', contact.styles.base)}>
+                    <Icon name={contact.icon} />
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900">
+                      {capitalize(contact.name)}
+                    </h4>
+                    <ul class="text-gray-600">
+                      {Array.isArray(contact.data)
+                        ? contact.data.map(item => <li>{item}</li>)
+                        : contact.data}
+                    </ul>
+                  </div>
+                </div>
+              )
+            )
+          }
+        </div>
+
+        <div class="flow border-t border-gray-200 pt-4">
+          <h4 class="font-semibold text-gray-900">
+            Seguinos en nuestras redes
+          </h4>
+          <ul class="flex gap-4">
+            {
+              [PHONE_INFO, IG_INFO].map(social => (
+                <li>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={cn(
+                      'rounded-lg p-3 text-white transition-colors',
+                      social.styles.callToAction
+                    )}
+                  >
+                    <Icon name={social.icon} />
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <Form />
+    </div>
+  </div>
+</section>

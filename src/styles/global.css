@@ -16,8 +16,32 @@
     height: auto;
     vertical-align: middle;
   }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    display: inline-block;
+  }
 }
 
-.flow > * + * {
-  margin-top: var(--flow-space, 1em);
+@utility stack {
+  display: grid;
+  grid-template-areas: 'stack';
+
+  & > * {
+    grid-area: stack;
+  }
+}
+
+@utility flow {
+  display: grid;
+  gap: 1em;
+}
+
+@utility flow-* {
+  display: grid;
+  gap: --spacing(--value(integer));
+  gap: --value([length], [percentage]);
 }

@@ -1,7 +1,8 @@
 ---
-import { NAV_LINKS } from '@/consts/navLinks';
+import { ROUTES } from '@/consts/routes';
 import Icon from '@/components/Icon.astro';
-import { SOCIALS } from '@/consts/socials';
+import { PHONE_INFO } from '@/consts/contactInfo';
+import capitalize from '@/utils/capitalize';
 ---
 
 <header class="sticky top-0 z-50 w-full bg-white shadow-md">
@@ -9,11 +10,11 @@ import { SOCIALS } from '@/consts/socials';
     {/* Header content */}
     <div class="flex items-center justify-between py-4">
       {/* Brand */}
-      <div class="flex items-center">
+      <div class="flex items-center gap-2">
         <div class="text-black">
           <Icon name="logo" class="size-12" />
         </div>
-        <div class="ml-3">
+        <div>
           <h1 class="text-xl font-bold text-gray-900">EM Servicios</h1>
           <p class="text-sm text-gray-600">Reparación y mantenimiento</p>
         </div>
@@ -40,20 +41,20 @@ import { SOCIALS } from '@/consts/socials';
           class="absolute inset-0 top-full h-fit border-t bg-white p-4 shadow md:relative md:border-none md:p-0 md:shadow-none"
         >
           {
-            NAV_LINKS.map(link => (
+            ROUTES.map(({ href, name }) => (
               <li>
                 <a
                   class="block p-2 font-semibold text-gray-700 transition-colors hover:bg-gray-100 hover:text-blue-600 md:px-4"
-                  href={link.href}
+                  href={href}
                 >
-                  {link.name}
+                  {capitalize(name)}
                 </a>
               </li>
             ))
           }
           <li class="mt-4 md:mt-0 md:ml-4">
             <a
-              href={SOCIALS.find(social => social.name === 'whatsapp')?.url}
+              href={PHONE_INFO.href}
               target="_blank"
               rel="noopener noreferrer"
               class="flex w-fit items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-white transition-colors hover:bg-green-600"
@@ -72,9 +73,9 @@ import { SOCIALS } from '@/consts/socials';
   const menuButton = document.querySelector(
     '#menu-button'
   ) as HTMLButtonElement;
-  menuButton?.addEventListener('click', function () {
-    const isExpanded = this.getAttribute('aria-expanded') === 'true';
-    this.setAttribute('aria-expanded', String(!isExpanded));
+  menuButton?.addEventListener('click', () => {
+    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!isExpanded));
   });
 </script>
 
@@ -86,11 +87,11 @@ import { SOCIALS } from '@/consts/socials';
     background-repeat: no-repeat;
     background-color: transparent;
     background-size: cover;
-    background-image: url('/src/assets/icons/x.svg');
+    background-image: url('/src/assets/icons/menu.svg');
   }
 
   #menu-button[aria-expanded='true'] {
-    background-image: url('/src/assets/icons/menu.svg');
+    background-image: url('/src/assets/icons/x.svg');
   }
 
   @media screen and (width <= 48rem) {

@@ -25,15 +25,18 @@
   }
 
   .embla__slide {
-    flex: 0 0 100%;
+    --_cols: 1;
+    --_col-width: calc(100% / var(--_cols));
+
+    flex: 0 0 var(--_col-width);
     min-width: 0;
     overflow: hidden;
-    margin-left: 0.5rem;
+    /* margin-left: 0.5rem; */
   }
 
   @media (width > 768px) {
     .embla__slide {
-      flex-basis: 50%;
+      --_cols: 2;
     }
   }
 </style>

@@ -1,0 +1,114 @@
+---
+import Icon from '@/components/Icon.astro';
+import FIELDS_FORM from '@/consts/fieldsForm';
+---
+
+<div class="grid gap-6 rounded-xl bg-white p-8 shadow-lg">
+  <h3 class="text-2xl font-bold text-gray-900">Envianos un mensaje</h3>
+
+  <form class="grid gap-4" id="contact-form">
+    {
+      FIELDS_FORM.map(field => {
+        if (field.type === 'text')
+          return (
+            <div>
+              <label class="grid gap-1">
+                <span class="text-sm font-medium text-gray-700">
+                  {field.label}
+                </span>
+                <input
+                  required
+                  autocomplete="true"
+                  class="rounded-lg border border-gray-300 px-4 py-3 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                  type={field.type}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                />
+              </label>
+            </div>
+          );
+
+        if (field.type === 'select')
+          return (
+            <div>
+              <label class="grid gap-1">
+                <span class="text-sm font-medium text-gray-700">
+                  {field.label}
+                </span>
+                <select
+                  required
+                  class="rounded-lg border border-gray-300 px-4 py-3 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                  name={field.name}
+                >
+                  <option value="" disabled selected hidden>
+                    Selecciona el tipo de dispositivo
+                  </option>
+                  {field.options.map(({ name, label }) => (
+                    <option value={name}>{label}</option>
+                  ))}
+                </select>
+              </label>
+            </div>
+          );
+
+        if (field.type === 'textarea')
+          return (
+            <div>
+              <label class="grid gap-1">
+                <span class="text-sm font-medium text-gray-700">
+                  {field.label}
+                </span>
+                <textarea
+                  required
+                  class="resize-none rounded-lg border border-gray-300 px-4 py-3 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                  name={field.name}
+                  rows={field.rows}
+                  placeholder={field.placeholder}
+                  minlength="10"
+                />
+              </label>
+            </div>
+          );
+      })
+    }
+    <button
+      type="submit"
+      class="flex items-center justify-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-white transition-colors hover:bg-green-600"
+    >
+      <Icon name="whatsapp" />
+      <span>Enviar consulta</span>
+    </button>
+  </form>
+
+  <div class="rounded-lg border border-green-200 bg-green-50 p-4">
+    <div class="flex items-center gap-2">
+      <Icon name="whatsapp" class="size-5 text-green-600" />
+      <span class="text-sm font-medium text-green-800"
+        >Respuesta más rápida por WhatsApp</span
+      >
+    </div>
+    <p class="mt-1 text-sm text-green-700">
+      Para una atención más inmediata, escribinos directamente por WhatsApp
+    </p>
+  </div>
+</div>
+
+<script>
+  import { PHONE_INFO } from '@/consts/contactInfo';
+
+  const form = document.querySelector('#contact-form');
+  form?.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+
+    const message = `Hola, soy ${data.name}. Mi dispositivo es un/a ${data.device}. Descripción: ${data.description}`;
+    const encodedMessage = encodeURIComponent(message);
+
+    const phone = PHONE_INFO.href;
+
+    const whatsappUrl = `${phone}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  });
+</script>

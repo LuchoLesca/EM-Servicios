@@ -1,0 +1,95 @@
+---
+import FloatingButtons from '@/sections/FloatingButtons.astro';
+import Footer from '@/sections/Footer.astro';
+import Header from '@/sections/Header.astro';
+import '@/styles/global.css';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>EM Servicios | Taller de Reparación de Electrónica</title>
+
+    <meta
+      name="description"
+      content="Servicio de reparación de celulares, PlayStation, joysticks, parlantes y notebooks. Confianza, experiencia y atención personalizada. Pedí tu turno por WhatsApp o Instagram."
+    />
+    <meta
+      name="keywords"
+      content="reparación de celulares, servicio técnico, reparar playstation, reparar joystick, reparar notebook, parlantes, servicio de electrónica"
+    />
+    <meta name="author" content="EM Servicios" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://em-servicios.netlify.app/" />
+    <meta
+      property="og:title"
+      content="EM Servicios | Reparación de Celulares y Electrónica"
+    />
+    <meta
+      property="og:description"
+      content="Reparación de celulares, PlayStation, joysticks, parlantes y notebooks. ¡Consulta y pedí tu turno fácil por WhatsApp!"
+    />
+    <meta
+      property="og:image"
+      content="https://em-servicios.netlify.app/preview.jpg"
+    />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://em-servicios.netlify.app/" />
+    <meta
+      name="twitter:title"
+      content="EM Servicios | Reparación de Electrónica"
+    />
+    <meta
+      name="twitter:description"
+      content="Servicio técnico especializado en celulares, consolas y notebooks. Atención rápida y confiable."
+    />
+    <meta
+      name="twitter:image"
+      content="https://em-servicios.netlify.app/preview.jpg"
+    />
+
+    <!-- Canonical -->
+    <!-- <link rel="canonical" href="https://em-servicios.netlify.app/" /> -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "[Nombre del Taller]",
+        "image": "https://em-servicios.netlify.app/preview.jpg",
+        "@id": "",
+        "url": "https://em-servicios.netlify.app/",
+        "telephone": "+54 9 3445 474284",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "12 de Octubre - 335",
+          "addressLocality": "Rosario del Tala",
+          "addressRegion": "Entre Ríos",
+          "postalCode": "3174",
+          "addressCountry": "AR"
+        },
+        "sameAs": [
+          "https://www.instagram.com/em_servicio_tecnico",
+          "https://wa.me/5493445474284"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <FloatingButtons />
+  </body>
+</html>

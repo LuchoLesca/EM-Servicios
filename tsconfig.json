@@ -8,6 +8,7 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@layouts/*": ["./src/layouts/*"],
+      "@sections/*": ["./src/sections/*"],
       "@pages/*": ["./src/pages/*"],
       "@consts/*": ["./src/consts/*"],
       "@types/*": ["./src/types/*"],

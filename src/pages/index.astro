@@ -1,17 +1,12 @@
 ---
-import Contact from '@/components/Contact.astro';
-import Hero from '@/components/Hero.astro';
-import Portfolio from '@/components/Portfolio.astro';
-import Services from '@/components/Services.astro';
-import Testimonials from '@/components/Testimonials.astro';
-
-import Layout from '@/layouts/Layout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { ROUTES } from '@/consts/routes.ts';
 ---
 
-<Layout>
-  <Hero />
-  <Services />
-  <Portfolio />
-  <Testimonials />
-  <Contact />
-</Layout>
+<BaseLayout>
+  {
+    ROUTES.map(({ component: Component, id }) => (
+      <Component id={id} class="bg-white nth-of-type-[odd]:bg-gray-50" />
+    ))
+  }
+</BaseLayout>

@@ -5,33 +5,33 @@ import Icon from '@/components/Icon.astro';
 
 <dialog
   id="modal"
-  class="m-auto w-[calc(100%-2rem)] max-w-4xl overflow-hidden rounded-md border-none bg-white backdrop:bg-black"
+  class="relative m-auto max-w-4xl border-0 backdrop:bg-black backdrop:backdrop-blur-md md:rounded-md"
 >
-  {/* Header */}
-  <div class="flex items-start justify-between gap-2 p-3 md:p-6">
-    <h3 id="modal-title" class="text-xl font-bold text-gray-900 md:text-2xl">
-    </h3>
-    <button id="close-modal">
-      <Icon name="x" class="size-8 md:size-10" />
-    </button>
-  </div>
-
-  {/* Images */}
   <div>
-    <Carousel />
-  </div>
+    <header
+      class="absolute z-10 flex w-full items-start justify-between gap-2 bg-black/20 mask-b-from-80% p-4 text-white backdrop-blur-xs md:px-6"
+    >
+      <h3 id="modal-title" class="text-xl font-bold md:text-2xl"></h3>
+      <button id="close-modal" class="outline-none">
+        <Icon name="x" class="size-8 md:size-9" />
+      </button>
+    </header>
 
-  {/* description */}
-  <div
-    class="flow rounded-lg bg-gray-50 p-3 md:p-6"
-    style="--flow-space: 0.5em"
-  >
-    <h4 class="text-lg font-semibold">Trabajo realizado:</h4>
-    <p id="modal-description" class="leading-tight text-gray-700"></p>
-    <div class="flex items-center text-sm text-gray-600">
-      <span class="font-medium">Tiempo de reparación: </span>
-      <span id="modal-time" class="ml-2"></span>
+    {/* Images */}
+    <div class="bg-black/90">
+      <Carousel />
     </div>
+    {/* description */}
+    <footer class="flow-2 bg-gray-50 p-4 pb-6 md:p-6 md:pb-8">
+      <div class="flex items-center justify-between">
+        <h4 class="text-lg font-semibold">Trabajo realizado:</h4>
+        <div class="flex items-center gap-1 text-sm text-gray-600 md:text-base">
+          <Icon name="clock" class="size-4" />
+          <span id="modal-time"></span>
+        </div>
+      </div>
+      <p id="modal-description" class="leading-tight text-gray-700"></p>
+    </footer>
   </div>
 </dialog>
 
@@ -40,12 +40,12 @@ import Icon from '@/components/Icon.astro';
   const closeModal = document.querySelector<HTMLButtonElement>('#close-modal');
 
   // Close button
-  closeModal?.addEventListener('click', () => modal?.close());
 
+  closeModal?.addEventListener('click', () => modal?.close());
   // Close modal on backdrop click
   modal?.addEventListener('click', e => {
     const rect = modal.getBoundingClientRect();
-    // Click fuera del contenido
+    // Click outside of content
     const isOutside =
       e.clientY < rect.top ||
       e.clientY > rect.bottom ||
@@ -66,7 +66,7 @@ import Icon from '@/components/Icon.astro';
 
 <style>
   dialog {
-    transition: opacity 0.3s ease-in-out; 
+    transition: opacity 0.3s ease-in-out;
     opacity: 0;
   }
 
@@ -75,6 +75,7 @@ import Icon from '@/components/Icon.astro';
     @starting-style {
       opacity: 0;
     }
+  }
 
   dialog::backdrop {
     transition: opacity 0.3s ease-in-out;

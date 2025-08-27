@@ -1,0 +1,47 @@
+---
+import Icon from '@/components/Icon.astro';
+import { CONTACT_INFO } from '@/consts/contactInfo';
+import cn from '@utils/cn';
+
+const SOCIAL_BUTTONS_DATA = {
+  whatsapp: {
+    text: 'Escribinos por WhatsApp',
+    popupStyles: 'bg-green-500',
+  },
+  instagram: {
+    text: 'Seguinos en Instagram',
+    popupStyles: 'bg-purple-500',
+  },
+} as const;
+
+type SocialName = keyof typeof SOCIAL_BUTTONS_DATA;
+---
+
+<div class="flow-4 fixed right-6 bottom-6 z-40">
+  {
+    (Object.keys(SOCIAL_BUTTONS_DATA) as SocialName[]).map(socialName => (
+      <li>
+        <a
+          href={CONTACT_INFO[socialName].href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class={cn(
+            'group rounded-full p-4 text-white shadow-lg transition-all duration-300 hover:scale-110',
+            CONTACT_INFO[socialName].styles.callToAction
+          )}
+          title={CONTACT_INFO[socialName].name}
+        >
+          <Icon name={CONTACT_INFO[socialName].icon} />
+          <div
+            class={cn(
+              'pointer-events-none absolute top-1/2 right-full mr-3 -translate-y-1/2 transform rounded-lg px-3 py-1 text-sm whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100',
+              SOCIAL_BUTTONS_DATA[socialName].popupStyles
+            )}
+          >
+            {SOCIAL_BUTTONS_DATA[socialName].text}
+          </div>
+        </a>
+      </li>
+    ))
+  }
+</div>
