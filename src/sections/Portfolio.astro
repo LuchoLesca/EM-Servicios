@@ -134,11 +134,6 @@ import Modal from '@/components/Modal.astro';
     );
   }
 
-  function showModal() {
-    document.body.style.overflow = 'hidden';
-    modal?.showModal();
-  }
-
   // Modal functionality
   jobCards.forEach(repair => {
     repair.addEventListener('click', function () {
@@ -173,14 +168,14 @@ import Modal from '@/components/Modal.astro';
 
             carouselContainer.replaceChildren(...nodes);
 
-            showModal();
+            modal?.showModal();
           })
           .catch(err => {
             console.error('Error cargando imágenes:', err);
-            showModal();
+            modal?.showModal();
           });
       } else {
-        showModal();
+        modal?.showModal();
       }
     });
   });

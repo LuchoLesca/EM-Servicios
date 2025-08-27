@@ -56,15 +56,17 @@ import Icon from '@/components/Icon.astro';
     }
   });
 
-  modal?.addEventListener('close', () => (document.body.style.overflow = ''));
-
   // Protect close modal when click of drag finish in backdrop
   let isDragging = false;
   modal?.addEventListener('mousedown', () => (isDragging = false));
   modal?.addEventListener('mousemove', () => (isDragging = true));
 </script>
 
-<style>
+<style is:global>
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
+
   dialog {
     transition: opacity 0.3s ease-in-out;
     opacity: 0;
