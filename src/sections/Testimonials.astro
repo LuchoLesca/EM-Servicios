@@ -57,28 +57,36 @@ import Icon from '@/components/Icon.astro';
       <h3 class="text-2xl font-bold">
         ¿Quedaste satisfecho con nuestro servicio?
       </h3>
-      <p class="text-green-100">
+      <p>
         Ayúdanos a seguir mejorando dejando tu comentario y compartiendo tu
         experiencia con otros clientes.
       </p>
-      <div class="flex flex-col justify-center gap-4 sm:flex-row">
-        <a
-          href="https://instagram.com/techrepairpro"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition-colors hover:bg-gray-100"
-        >
-          Seguinos en Instagram
-        </a>
-        <a
-          href="https://wa.me/1234567890"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="rounded-lg border-2 border-white bg-transparent px-6 py-3 font-semibold text-white transition-colors hover:bg-white hover:text-blue-600"
-        >
-          Dejá tu comentario
-        </a>
-      </div>
+      <ul
+        class="grid gap-4 bg-gradient-to-r from-green-500 to-blue-600 md:grid-cols-2"
+      >
+        <li>
+          <a
+            href="https://instagram.com/techrepairpro"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 rounded-lg border-2 border-white bg-transparent px-6 py-3 font-semibold text-white transition-colors hover:bg-white hover:text-purple-500"
+          >
+            <Icon name="instagram" class="shrink-0" />
+            Seguinos en Instagram
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 rounded-lg border-2 border-white bg-transparent px-6 py-3 font-semibold text-white transition-colors hover:bg-white hover:text-green-500"
+          >
+            <Icon name="whatsapp" class="shrink-0" />
+            Dejá tu comentario
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
