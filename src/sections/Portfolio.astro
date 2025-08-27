@@ -119,6 +119,11 @@ import Modal from '@/components/Modal.astro';
   const modal = document.querySelector<HTMLDialogElement>('#modal');
   const carouselContainer = document.querySelector('.embla__container');
 
+  function showModal() {
+    sessionStorage.setItem('scrollPosition', String(window.scrollY));
+    modal?.showModal();
+  }
+
   function preloadImages(urls: string[]): Promise<HTMLImageElement[]> {
     return Promise.all(
       urls.map(url => {
@@ -168,14 +173,14 @@ import Modal from '@/components/Modal.astro';
 
             carouselContainer.replaceChildren(...nodes);
 
-            modal?.showModal();
+            showModal();
           })
           .catch(err => {
             console.error('Error cargando imágenes:', err);
-            modal?.showModal();
+            showModal();
           });
       } else {
-        modal?.showModal();
+        showModal();
       }
     });
   });

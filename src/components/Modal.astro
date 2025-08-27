@@ -37,11 +37,28 @@ import Icon from '@/components/Icon.astro';
 
 <script>
   const modal = document.querySelector<HTMLDialogElement>('#modal');
-  const closeModal = document.querySelector<HTMLButtonElement>('#close-modal');
+  const btnCloseModal =
+    document.querySelector<HTMLButtonElement>('#close-modal');
 
-  // Close button
+  function closeModal() {
+    modal?.close();
+    // Get scroll position saved
+    const scrollPosition = sessionStorage.getItem('scrollPosition');
 
-  closeModal?.addEventListener('click', () => modal?.close());
+    // If scroll position exist, restore scroll
+    if (scrollPosition) {
+      window.scrollTo(0, parseInt(scrollPosition, 10));
+      // Clean saved position
+      sessionStorage.removeItem('scrollPosition');
+    }
+  }
+
+  // Close modal on escape key is pressed
+  modal?.addEventListener('close', closeModal);
+
+  // Close modal on button close press
+  btnCloseModal?.addEventListener('click', closeModal);
+
   // Close modal on backdrop click
   modal?.addEventListener('click', e => {
     const rect = modal.getBoundingClientRect();
@@ -52,7 +69,7 @@ import Icon from '@/components/Icon.astro';
       e.clientX < rect.left ||
       e.clientX > rect.right;
     if (isOutside && !isDragging) {
-      modal.close();
+      closeModal();
     }
   });
 
