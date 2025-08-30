@@ -38,11 +38,11 @@ import capitalize from '@/utils/capitalize';
         {/* Menu */}
         <ul
           id="primary-navigation"
-          class="absolute inset-0 top-full h-fit divide-y border-t bg-white p-4 pt-0 shadow md:relative md:flex md:items-center md:divide-none md:border-none md:p-0 md:shadow-none"
+          class="absolute inset-x-0 top-full h-fit divide-y divide-gray-300 overflow-clip border-t border-gray-300 bg-white px-4 shadow md:relative md:flex md:items-center md:divide-none md:border-none md:shadow-none"
         >
           {
             ROUTES.map(({ href, name }) => (
-              <li>
+              <li class="block">
                 <a
                   class="block p-3 font-medium text-gray-700 transition-colors hover:bg-gray-100 md:px-4 md:py-2"
                   href={href}
@@ -52,7 +52,7 @@ import capitalize from '@/utils/capitalize';
               </li>
             ))
           }
-          <li class="mt-4 md:mt-0 md:ml-4">
+          <li class="px-3 py-3 md:py-0">
             <a
               href={PHONE_INFO.href}
               target="_blank"
@@ -97,15 +97,18 @@ import capitalize from '@/utils/capitalize';
     background-image: url('/src/assets/icons/x.svg');
   }
 
-  @media screen and (width <= 48rem) {
-    #menu-button[aria-expanded='false'] ~ #primary-navigation {
-      display: none;
-    }
+  #primary-navigation {
+    visibility: visible;
+    interpolate-size: allow-keywords;
+    transition:
+      height 250ms ease,
+      visibility 250ms;
   }
 
-  @media screen and (width > 48rem) {
-    #primary-navigation {
-      display: flex;
+  @media screen and (width < 48rem) {
+    #menu-button[aria-expanded='false'] ~ #primary-navigation {
+      visibility: hidden;
+      height: 0;
     }
   }
 </style>
