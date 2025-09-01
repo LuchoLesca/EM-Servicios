@@ -23,7 +23,8 @@
     "astro": "5.12.4",
     "astro-icon": "1.1.5",
     "clsx": "2.1.1",
-    "embla-carousel": "^8.6.0",
+    "embla-carousel": "8.6.0",
+    "embla-carousel-auto-scroll": "8.6.0",
     "tailwind-merge": "3.3.1",
     "tailwindcss": "4.1.11"
   },
