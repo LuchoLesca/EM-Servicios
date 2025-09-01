@@ -17,7 +17,6 @@
     "normalize-file-names": "node ./src/scipts/normalize-file-name.js"
   },
   "dependencies": {
-    "@lucide/astro": "0.539.0",
     "@tailwindcss/typography": "0.5.16",
     "@tailwindcss/vite": "4.1.11",
     "astro": "5.12.4",
