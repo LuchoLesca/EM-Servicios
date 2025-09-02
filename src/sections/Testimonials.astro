@@ -108,16 +108,34 @@ import Icon from '@/components/Icon.astro';
 
   const plugins: EmblaPluginType[] = [
     Autoscroll({
-      speed: 1,
+      speed: 0.75,
       stopOnInteraction: false,
       stopOnFocusIn: false,
       stopOnMouseEnter: true,
       startDelay: 0,
+      playOnInit: false,
     }),
   ];
 
   if ($emblaNode) {
     const emblaApi = EmblaCarousel($emblaNode, options, plugins);
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          const isIntersecting = entry.isIntersecting;
+          isIntersecting
+            ? emblaApi.plugins().autoScroll.play()
+            : emblaApi.plugins().autoScroll.stop();
+        });
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0,
+      }
+    );
+    observer.observe($emblaNode);
   }
 </script>
 
