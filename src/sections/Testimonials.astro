@@ -15,7 +15,7 @@ import Icon from '@/components/Icon.astro';
       </p>
     </div>
 
-    <div class="embla mask-x-from-95%">
+    <div id="testimonials-carousel" class="embla mask-x-from-95%">
       <ul class="embla__container py-1">
         {
           TESTIMONIALS.map(testimonial => (
@@ -100,7 +100,9 @@ import Icon from '@/components/Icon.astro';
   import Autoscroll from 'embla-carousel-auto-scroll';
   import type { EmblaOptionsType, EmblaPluginType } from 'embla-carousel';
 
-  const $emblaNode = document.querySelector('.embla') as HTMLElement;
+  const $emblaNode = document.querySelector(
+    '#testimonials-carousel'
+  ) as HTMLElement;
   const options: EmblaOptionsType = {
     loop: true,
     align: 'start',
