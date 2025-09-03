@@ -19,7 +19,7 @@ import FIELDS_FORM from '@/consts/fieldsForm';
                 <input
                   required
                   autocomplete="true"
-                  class="rounded-lg border border-gray-300 px-4 py-3 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                  class="rounded-lg border border-gray-300 px-4 py-3 placeholder:text-gray-600 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
                   type={field.type}
                   name={field.name}
                   placeholder={field.placeholder}
@@ -37,7 +37,7 @@ import FIELDS_FORM from '@/consts/fieldsForm';
                 </span>
                 <select
                   required
-                  class="rounded-lg border border-gray-300 px-4 py-3 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                  class="rounded-lg border border-gray-300 px-4 py-3 placeholder:text-gray-600 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
                   name={field.name}
                 >
                   <option value="" disabled selected hidden>
@@ -60,7 +60,7 @@ import FIELDS_FORM from '@/consts/fieldsForm';
                 </span>
                 <textarea
                   required
-                  class="resize-none rounded-lg border border-gray-300 px-4 py-3 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                  class="resize-none rounded-lg border border-gray-300 px-4 py-3 placeholder:text-gray-600 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
                   name={field.name}
                   rows={field.rows}
                   placeholder={field.placeholder}
