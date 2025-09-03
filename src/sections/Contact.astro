@@ -41,9 +41,11 @@ import Form from '@/components/Form.astro';
                       {capitalize(contact.name)}
                     </h4>
                     <ul class="text-gray-600">
-                      {Array.isArray(contact.data)
-                        ? contact.data.map(item => <li>{item}</li>)
-                        : contact.data}
+                      {Array.isArray(contact.data) ? (
+                        contact.data.map(item => <li>{item}</li>)
+                      ) : (
+                        <li>{contact.data}</li>
+                      )}
                     </ul>
                   </div>
                 </div>
@@ -68,6 +70,7 @@ import Form from '@/components/Form.astro';
                       'rounded-lg p-3 text-white transition-colors',
                       social.styles.callToAction
                     )}
+                    aria-label={`Contactarme por ${social.name}`}
                   >
                     <Icon name={social.icon} />
                   </a>
