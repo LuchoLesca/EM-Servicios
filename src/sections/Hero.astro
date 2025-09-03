@@ -1,25 +1,21 @@
 ---
 import Icon from '@/components/Icon.astro';
-import { PHONE_INFO } from '@/consts/contactInfo';
 import cn from '@/utils/cn';
+import { PHONE_INFO } from '@/consts/contactInfo';
+import { SERVICE_HIGHLIGHTS } from '@/consts/servicesHighlights';
 ---
 
 <section {...Astro.props}>
   <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
       <div class="flow-8">
-        <h1 class="text-4xl font-bold text-gray-900 md:text-6xl">
+        <h1 class="text-4xl font-bold text-balance text-gray-900 md:text-6xl">
           Reparación y Manteniemiento de
           <span
             class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-            style="
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-            "
           >
             Electrónica</span
           >
-          <br />
           Profesional
         </h1>
 
@@ -51,27 +47,19 @@ import cn from '@/utils/cn';
         </div>
 
         <div class="grid grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="mx-auto w-fit rounded-full bg-white p-3 shadow-md">
-              <Icon name="award" class="text-blue-600" />
-            </div>
-            <div class="text-2xl font-bold text-gray-900">+5</div>
-            <div class="text-sm text-gray-600">Años de experiencia</div>
-          </div>
-          <div class="text-center">
-            <div class="mx-auto w-fit rounded-full bg-white p-3 shadow-md">
-              <Icon name="clock" class="text-green-600" />
-            </div>
-            <div class="text-2xl font-bold text-gray-900">24-48h</div>
-            <div class="text-sm text-gray-600">Tiempo promedio</div>
-          </div>
-          <div class="text-center">
-            <div class="mx-auto w-fit rounded-full bg-white p-3 shadow-md">
-              <Icon name="star" class="text-yellow-500" />
-            </div>
-            <div class="text-2xl font-bold text-gray-900">100%</div>
-            <div class="text-sm text-gray-600">Garantizado</div>
-          </div>
+          {
+            SERVICE_HIGHLIGHTS.map(feature => (
+              <div class="text-center">
+                <div class="mx-auto w-fit rounded-full bg-white p-3 shadow-md">
+                  <Icon name={feature.icon.name} class={feature.icon.styles} />
+                </div>
+                <div class="text-2xl font-bold text-gray-900">
+                  {feature.text1}
+                </div>
+                <div class="text-sm text-gray-600">{feature.text2}</div>
+              </div>
+            ))
+          }
         </div>
       </div>
 
