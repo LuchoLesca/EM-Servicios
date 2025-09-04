@@ -4,6 +4,7 @@ import { REPAIRS } from '@/consts/repairs';
 import capitalize from '@/utils/capitalize';
 import CategoryFilter from '@/components/CategoryFilter.astro';
 import Modal from '@/components/Modal.astro';
+import { Image } from 'astro:assets';
 ---
 
 <section {...Astro.props}>
@@ -33,13 +34,12 @@ import Modal from '@/components/Modal.astro';
           >
             {/* Image */}
             <div class="stack">
-              <img
+              <Image
                 src={repair.imgs.before}
-                width="200"
-                height="200"
+                height={200}
+                width={200}
                 alt={`${repair.title} - antes`}
                 class="w-full"
-                loading="lazy"
               />
               <div class="grid place-items-center bg-black/20 text-white opacity-0 transition-all group-hover:opacity-100 group-hover:backdrop-blur-xs">
                 <Icon name="eye" class="size-12" />
@@ -115,12 +115,12 @@ import Modal from '@/components/Modal.astro';
     }
   });
 
-  const modal = document.querySelector<HTMLDialogElement>('#modal');
-  const carouselContainer = document.querySelector('.embla__container');
+  const $modal = document.querySelector<HTMLDialogElement>('#modal');
+  const $carouselContainer = $modal?.querySelector('.embla__container');
 
   function showModal() {
     sessionStorage.setItem('scrollPosition', String(window.scrollY));
-    modal?.showModal();
+    $modal?.showModal();
   }
 
   function preloadImages(urls: string[]): Promise<HTMLImageElement[]> {
@@ -144,32 +144,32 @@ import Modal from '@/components/Modal.astro';
       const repairId = parseInt(this.getAttribute('data-id') || '');
       const repairData = REPAIRS.find(r => r.id === repairId);
 
-      if (!repairData || !modal) return;
+      if (!repairData || !$modal) return;
 
-      const title = document.querySelector('#modal-title');
-      const isSameRepair = title?.textContent === repairData.title;
+      const $title = $modal.querySelector('#modal-title');
+      const isSameRepair = $title?.textContent === repairData.title;
 
-      const description = document.querySelector('#modal-description');
-      const time = document.querySelector('#modal-time');
+      const $description = $modal.querySelector('#modal-description');
+      const $time = $modal.querySelector('#modal-time');
 
       if (!isSameRepair) {
-        if (title) title.textContent = repairData.title;
-        if (description) description.textContent = repairData.description;
-        if (time) time.textContent = repairData.time;
+        if ($title) $title.textContent = repairData.title;
+        if ($description) $description.textContent = repairData.description;
+        if ($time) $time.textContent = repairData.time;
 
         // Image preload and replace on carousel
-        const urls = repairData.imgs.all;
+        const urls = repairData?.imgs?.all;
+        if (!urls) return;
+        if (!$carouselContainer) return;
+
         preloadImages(urls)
           .then(images => {
-            if (!carouselContainer) return;
-
             // Agregar slides nuevos
-            const nodes = images.map(img => {
+            const $slidesNodes = images.map(img => {
               return createElement('div', { className: 'embla__slide' }, img);
             });
 
-            carouselContainer.replaceChildren(...nodes);
-
+            $carouselContainer.replaceChildren(...$slidesNodes);
             showModal();
           })
           .catch(err => {

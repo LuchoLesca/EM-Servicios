@@ -1,6 +1,7 @@
 ---
 import { TESTIMONIALS } from '@/consts/testimonials';
 import Icon from '@/components/Icon.astro';
+import { Image } from 'astro:assets';
 ---
 
 <section {...Astro.props}>
@@ -22,9 +23,11 @@ import Icon from '@/components/Icon.astro';
             <li class="embla__slide select-none">
               <div class="flow rounded-xl border border-gray-100 bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm">
                 <div class="flex items-center gap-4">
-                  <img
+                  <Image
                     src={testimonial.avatar}
-                    alt={testimonial.name}
+                    alt={`${testimonial.name}'s avatar`}
+                    height={48}
+                    width={48}
                     class="size-12 rounded-full object-cover object-center"
                   />
                   <div>

@@ -3,6 +3,8 @@ import Icon from '@/components/Icon.astro';
 import cn from '@/utils/cn';
 import { PHONE_INFO } from '@/consts/contactInfo';
 import { SERVICE_HIGHLIGHTS } from '@/consts/servicesHighlights';
+import { Image } from 'astro:assets';
+import heroImage from '/src/assets/imgs/hero-image.webp';
 ---
 
 <section {...Astro.props}>
@@ -65,8 +67,8 @@ import { SERVICE_HIGHLIGHTS } from '@/consts/servicesHighlights';
 
       <div class="relative">
         <div class="rounded-2xl bg-white p-8 shadow-2xl">
-          <img
-            src="/src/assets/imgs/hero-image.webp"
+          <Image
+            src={heroImage}
             role="presentation"
             alt=""
             class="h-96 w-full rounded-lg object-cover"
