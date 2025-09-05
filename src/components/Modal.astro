@@ -1,5 +1,5 @@
 ---
-import Carousel from '@/components/Carousel.astro';
+import Carousel from '@/components/Carousel/Carousel.astro';
 import Icon from '@/components/Icon.astro';
 ---
 
@@ -7,32 +7,44 @@ import Icon from '@/components/Icon.astro';
   id="modal"
   class="relative m-auto max-w-4xl border-0 backdrop:bg-black backdrop:backdrop-blur-md md:rounded-md"
 >
-  <div>
-    <header
-      class="absolute z-10 flex w-full items-start justify-between gap-2 bg-black/20 mask-b-from-80% p-4 text-white backdrop-blur-xs md:px-6"
-    >
-      <h3 id="modal-title" class="text-xl font-bold md:text-2xl"></h3>
-      <button id="close-modal" class="outline-none">
-        <Icon name="x" class="size-8 md:size-9" />
-      </button>
-    </header>
+  <header
+    class="absolute z-10 flex w-full items-start justify-between gap-2 bg-black/20 mask-b-from-80% p-4 text-white backdrop-blur-xs md:px-6"
+  >
+    <h3 id="modal-title" class="text-xl font-bold md:text-2xl"></h3>
+    <button id="close-modal" class="outline-none">
+      <Icon name="x" class="size-8 md:size-9" />
+    </button>
+  </header>
 
-    {/* Images */}
-    <div class="bg-black/90">
-      <Carousel />
-    </div>
-    {/* description */}
-    <footer class="flow-2 bg-gray-50 p-4 pb-6 md:p-6 md:pb-8">
-      <div class="flex items-center justify-between">
-        <h4 class="text-lg font-semibold">Trabajo realizado:</h4>
-        <div class="flex items-center gap-1 text-sm text-gray-600 md:text-base">
-          <Icon name="clock" class="size-4" />
-          <span id="modal-time"></span>
-        </div>
-      </div>
-      <p id="modal-description" class="leading-tight text-gray-700"></p>
-    </footer>
+  {/* Images */}
+  <div class="bg-black/90">
+    <Carousel
+      class="stack relative min-h-96"
+      hasArrows
+      classes={{
+        buttons:
+          'absolute inset-0 flex items-center justify-between pointer-events-none ',
+        button: 'text-white pointer-events-auto size-16',
+      }}
+      options={{
+        loop: true,
+        breakpoints: {
+          '(width > 48rem)': { align: 'start', dragFree: true },
+        },
+      }}
+    />
   </div>
+  {/* description */}
+  <footer class="flow-2 bg-gray-50 p-4 pb-6 md:p-6 md:pb-8">
+    <div class="flex items-center justify-between">
+      <h4 class="text-lg font-semibold">Trabajo realizado:</h4>
+      <div class="flex items-center gap-1 text-sm text-gray-600 md:text-base">
+        <Icon name="clock" class="size-4" />
+        <span id="modal-time"></span>
+      </div>
+    </div>
+    <p id="modal-description" class="leading-tight text-gray-700"></p>
+  </footer>
 </dialog>
 
 <script>
