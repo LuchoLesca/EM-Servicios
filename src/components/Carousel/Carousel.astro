@@ -1,0 +1,175 @@
+---
+import { type EmblaOptionsType } from 'embla-carousel';
+import cn from '@/utils/cn';
+import Icon from '@/components/Icon.astro';
+
+interface CarouselClasses {
+  viewport?: string;
+  container?: string;
+  controls?: string;
+  buttons?: string;
+  button?: string;
+  dots?: string;
+  dot?: string;
+}
+
+interface Props {
+  options?: EmblaOptionsType;
+  class?: string;
+  hasArrows?: boolean | undefined;
+  hasDots?: boolean | undefined;
+  classes?: CarouselClasses; // Aquí se agrupan todas las clases
+}
+
+const { options, class: className, hasArrows, hasDots, classes } = Astro.props;
+---
+
+<custom-caorusel
+  data-options={JSON.stringify(options || {})}
+  class={cn('embla', className)}
+>
+  <div class={cn('embla__viewport overflow-hidden', classes?.viewport)}>
+    <div class={cn('embla__container', classes?.container)}>
+      <slot />
+    </div>
+  </div>
+  {
+    (hasArrows || hasDots) && (
+      <div class={cn('embla__controls', classes?.controls)}>
+        {hasArrows && (
+          <div class={cn('embla__buttons', classes?.buttons)}>
+            <button
+              class={cn('embla__button embla__button--prev', classes?.button)}
+              type="button"
+            >
+              <Icon name="chevron-down" class="rotate-90" />
+            </button>
+            <button
+              class={cn('embla__button embla__button--next', classes?.button)}
+              type="button"
+            >
+              <Icon name="chevron-down" class="-rotate-90" />
+            </button>
+          </div>
+        )}
+        {hasDots && <div class={cn('embla__dots', classes?.dots)} />}
+      </div>
+    )
+  }
+</custom-caorusel>
+
+<script>
+  import EmblaCarousel, { type EmblaCarouselType } from 'embla-carousel';
+  import { addPrevNextBtnsClickHandlers } from './EmblaCarouselArrowButtons';
+  import { addDotBtnsAndClickHandlers } from './EmblaCarouselDotButton';
+
+  class Carousel extends HTMLElement {
+    private embla: EmblaCarouselType | null = null;
+
+    connectedCallback() {
+      const optionsString = this.getAttribute('data-options');
+      const options = optionsString ? JSON.parse(optionsString) : {};
+
+      const $viewport = this.querySelector('.embla__viewport') as HTMLElement;
+
+      if ($viewport) {
+        this.embla = EmblaCarousel($viewport, options);
+
+        // Si los botones y puntos existen, se inicializan
+        const $prevBtn = this.querySelector(
+          '.embla__button--prev'
+        ) as HTMLElement;
+        const $nextBtn = this.querySelector(
+          '.embla__button--next'
+        ) as HTMLElement;
+        const $dots = this.querySelector('.embla__dots') as HTMLElement;
+
+        if ($prevBtn && $nextBtn) {
+          const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(
+            this.embla,
+            $prevBtn,
+            $nextBtn
+          );
+          this.embla.on('destroy', removePrevNextBtnsClickHandlers);
+        }
+
+        if ($dots) {
+          const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(
+            this.embla,
+            $dots
+          );
+          this.embla.on('destroy', removeDotBtnsAndClickHandlers);
+        }
+      }
+    }
+
+    disconnectedCallback() {
+      if (this.embla) {
+        this.embla.destroy();
+      }
+    }
+  }
+
+  customElements.define('my-carousell', Carousel);
+</script>
+
+<style is:global>
+  .embla__container {
+    --items-per-view: 1;
+
+    display: grid;
+    touch-action: pan-y pinch-zoom;
+    grid-auto-flow: column;
+    grid-auto-columns: calc(100% / var(--items-per-view));
+
+    @media (width > 48rem) {
+      & {
+        --items-per-view: 2;
+      }
+    }
+  }
+
+  .embla__slide {
+    min-width: 0;
+  }
+
+  .embla__controls {
+    /* display: grid; */
+    /* grid-template-columns: auto 1fr; */
+    /* justify-content: space-between; */
+    /* gap: 1rem; */
+  }
+
+  .embla__buttons {
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* gap: 0.6rem; */
+    /* align-items: center; */
+    /* color: white; */
+  }
+
+  .embla__button {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    padding: 0.5rem;
+
+    > * {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .embla__button:disabled {
+    color: grey;
+  }
+</style>
