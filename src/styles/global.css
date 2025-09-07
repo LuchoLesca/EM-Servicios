@@ -1,4 +1,10 @@
 @import 'tailwindcss';
+@import './fonts.css';
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+}
 
 @layer base {
   body {
