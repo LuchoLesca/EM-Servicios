@@ -7,13 +7,12 @@ import {
   SCHEDULE_INFO,
   EMAIL_INFO,
 } from '@/consts/contactInfo';
-import capitalize from '@/utils/capitalize';
 import cn from '@/utils/cn';
 import Form from '@/components/Form.astro';
 ---
 
 <section {...Astro.props}>
-  <div class="flow-12 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <div class="flow-12 mx-auto max-w-7xl p-12 px-4 sm:px-6 lg:px-8">
     <div class="grid justify-items-center gap-4 text-center">
       <h2 class="text-3xl font-bold text-gray-900 md:text-4xl">Contactanos</h2>
       <p class="max-w-3xl text-xl text-gray-600">
@@ -22,13 +21,15 @@ import Form from '@/components/Form.astro';
       </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+    <div class="grid gap-12 lg:grid-cols-2">
       <div class="flow-6">
         <h3 class="text-2xl font-bold text-gray-900">
           Información de Contacto
         </h3>
 
-        <div class="flow-4">
+        <div
+          class="grid justify-start gap-x-8 gap-y-4 sm:grid-cols-[auto_auto] lg:grid-cols-1"
+        >
           {
             [ADDRESS_INFO, PHONE_INFO, SCHEDULE_INFO, EMAIL_INFO].map(
               contact => (
@@ -37,8 +38,8 @@ import Form from '@/components/Form.astro';
                     <Icon name={contact.icon} />
                   </div>
                   <div>
-                    <h4 class="font-semibold text-gray-900">
-                      {capitalize(contact.name)}
+                    <h4 class="font-semibold text-gray-900 capitalize">
+                      {contact.name}
                     </h4>
                     <ul class="text-gray-600">
                       {Array.isArray(contact.data) ? (

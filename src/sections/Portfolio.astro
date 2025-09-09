@@ -1,14 +1,13 @@
 ---
 import Icon from '@/components/Icon.astro';
 import { REPAIRS } from '@/consts/repairs';
-import capitalize from '@/utils/capitalize';
 import CategoryFilter from '@/components/CategoryFilter.astro';
 import Modal from '@/components/Modal.astro';
 import { Image } from 'astro:assets';
 ---
 
 <section {...Astro.props}>
-  <div class="flow-16 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <div class="flow-16 mx-auto max-w-7xl p-12 px-4 sm:px-6 lg:px-8">
     <div class="grid justify-items-center gap-4 text-center md:gap-6">
       <h2 class="text-3xl font-bold text-gray-900 md:text-4xl">
         Trabajos Realizados
@@ -28,7 +27,7 @@ import { Image } from 'astro:assets';
       {
         REPAIRS.map(repair => (
           <div
-            class="group job-card overflow-hidden rounded-md bg-white shadow-md transition-all duration-300 hover:shadow-xl"
+            class="group job-card cursor-pointer overflow-hidden rounded-md bg-white shadow-md transition-all duration-300 hover:shadow-xl"
             data-category={repair.category}
             data-id={repair.id}
           >
@@ -47,20 +46,20 @@ import { Image } from 'astro:assets';
             </div>
 
             {/* Card Content */}
-            <div class="flow-4 p-4">
+            <div class="flow-3 p-4">
               <div class="flex items-center justify-between">
-                <span class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-800">
-                  {capitalize(repair.category)}
+                <span class="rounded-full bg-blue-100 px-3 py-3 text-xs leading-0 text-blue-800 capitalize">
+                  {repair.category}
                 </span>
                 <div class="flex items-center gap-1 text-sm text-gray-500">
                   <Icon name="clock" class="size-4" />
                   <span>{repair.time}</span>
                 </div>
               </div>
-              <h3 class="text-lg font-semibold text-gray-900">
+              <h3 class="line-clamp-2 text-lg font-semibold text-gray-900">
                 {repair.title}
               </h3>
-              <p class="text-sm leading-relaxed text-gray-600">
+              <p class="text-sm leading-normal text-gray-600">
                 {repair.description}
               </p>
             </div>
@@ -89,16 +88,16 @@ import { Image } from 'astro:assets';
   import { REPAIRS } from '@/consts/repairs';
   import { createElement } from '@/utils/create-element';
 
-  const section = document.querySelector('#trabajos');
-  const jobCards = document.querySelectorAll<HTMLElement>('.job-card');
-  const noResults = document.querySelector('#no-results');
+  const $jobs = document.querySelector('#trabajos');
+  const $jobCards = document.querySelectorAll<HTMLElement>('.job-card');
+  const $noResults = document.querySelector('#no-results');
 
-  section?.addEventListener('filter-category-change', (event: Event) => {
+  $jobs?.addEventListener('filter-category-change', (event: Event) => {
     const customEvent = event as CustomEvent<{ category: string }>;
     const category = customEvent.detail.category;
 
     let visibleCount = 0;
-    jobCards.forEach(card => {
+    $jobCards.forEach(card => {
       const cardCategory = card.getAttribute('data-category');
       if (category === 'todas' || cardCategory === category) {
         card.style.display = 'block';
@@ -109,9 +108,9 @@ import { Image } from 'astro:assets';
     });
 
     if (visibleCount === 0) {
-      noResults?.classList.remove('hidden');
+      $noResults?.classList.remove('hidden');
     } else {
-      noResults?.classList.add('hidden');
+      $noResults?.classList.add('hidden');
     }
   });
 
@@ -139,7 +138,7 @@ import { Image } from 'astro:assets';
   }
 
   // Modal functionality
-  jobCards.forEach(repair => {
+  $jobCards.forEach(repair => {
     repair.addEventListener('click', function () {
       const repairId = parseInt(this.getAttribute('data-id') || '');
       const repairData = REPAIRS.find(r => r.id === repairId);

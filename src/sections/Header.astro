@@ -2,7 +2,6 @@
 import { ROUTES } from '@/consts/routes';
 import Icon from '@/components/Icon.astro';
 import { PHONE_INFO } from '@/consts/contactInfo';
-import capitalize from '@/utils/capitalize';
 ---
 
 <header class="sticky top-0 z-50 w-full bg-white shadow-md">
@@ -16,7 +15,7 @@ import capitalize from '@/utils/capitalize';
         </div>
         <div>
           <h1 class="text-xl font-bold text-gray-900">EM Servicios</h1>
-          <p class="text-sm text-gray-600">Reparación y mantenimiento</p>
+          <p class="text-gray-600 italic">Reparación y mantenimiento</p>
         </div>
       </div>
 
@@ -44,10 +43,10 @@ import capitalize from '@/utils/capitalize';
             ROUTES.map(({ href, name }) => (
               <li class="block">
                 <a
-                  class="block p-3 font-medium text-gray-700 transition-colors hover:bg-gray-100 md:px-4 md:py-2"
+                  class="block p-3 font-semibold text-gray-700 capitalize transition-colors hover:bg-gray-100 md:px-4 md:py-2"
                   href={href}
                 >
-                  {capitalize(name)}
+                  {name}
                 </a>
               </li>
             ))
@@ -57,9 +56,9 @@ import capitalize from '@/utils/capitalize';
               href={PHONE_INFO.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex w-fit items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-white transition-colors hover:bg-green-600"
+              class="font-montserrat flex w-fit items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-white transition-colors hover:bg-green-600"
             >
-              <Icon name="whatsapp" class="size-4" />
+              <Icon name="whatsapp" class="size-5" />
               WhatsApp
             </a>
           </li>

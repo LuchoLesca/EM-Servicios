@@ -8,10 +8,12 @@ import heroImage from '/src/assets/imgs/hero-image.webp';
 ---
 
 <section {...Astro.props}>
-  <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
     <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-      <div class="flow-8">
-        <h1 class="text-4xl font-bold text-balance text-gray-900 md:text-6xl">
+      <div class="flow-6">
+        <h1
+          class="font-montserrat text-4xl font-bold text-balance text-gray-900 md:text-6xl"
+        >
           Reparación y Manteniemiento de
           <span
             class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
@@ -21,7 +23,7 @@ import heroImage from '/src/assets/imgs/hero-image.webp';
           Profesional
         </h1>
 
-        <p class="text-xl leading-relaxed text-gray-600">
+        <p class="text-lg text-gray-600">
           Especialistas en reparación de celulares, PlayStation, joysticks,
           parlantes y notebooks. Diagnóstico gratuito y garantía en todos
           nuestros trabajos.
@@ -33,7 +35,7 @@ import heroImage from '/src/assets/imgs/hero-image.webp';
             target="_blank"
             rel="noopener noreferrer"
             class={cn(
-              'flex min-w-fit flex-1 transform items-center justify-center gap-2 rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105',
+              'font-montserrat flex min-w-fit flex-1 transform items-center justify-center gap-2 rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105',
               PHONE_INFO.styles.callToAction
             )}
           >
@@ -71,7 +73,9 @@ import heroImage from '/src/assets/imgs/hero-image.webp';
             src={heroImage}
             role="presentation"
             alt=""
-            class="h-96 w-full rounded-lg object-cover"
+            class="rounded-lg object-cover"
+            widths={[240, 540, 720, heroImage.width]}
+            sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${heroImage.width}px`}
           />
           <div
             class="absolute -top-4 -right-4 rounded-full bg-orange-500 p-4 text-white shadow-lg"

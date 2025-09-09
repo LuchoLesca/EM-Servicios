@@ -13,7 +13,7 @@ import FIELDS_FORM from '@/consts/fieldsForm';
           return (
             <div>
               <label class="grid gap-1">
-                <span class="text-sm font-medium text-gray-700">
+                <span class="text-sm font-semibold text-gray-700">
                   {field.label}
                 </span>
                 <input
@@ -32,7 +32,7 @@ import FIELDS_FORM from '@/consts/fieldsForm';
           return (
             <div>
               <label class="grid gap-1">
-                <span class="text-sm font-medium text-gray-700">
+                <span class="text-sm font-semibold text-gray-700">
                   {field.label}
                 </span>
                 <select
@@ -55,12 +55,12 @@ import FIELDS_FORM from '@/consts/fieldsForm';
           return (
             <div>
               <label class="grid gap-1">
-                <span class="text-sm font-medium text-gray-700">
+                <span class="text-sm font-semibold text-gray-700">
                   {field.label}
                 </span>
                 <textarea
                   required
-                  class="resize-none rounded-lg border border-gray-300 px-4 py-3 placeholder:text-gray-600 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                  class="min-h-[4lh] resize-none rounded-lg border border-gray-300 px-4 py-3 placeholder:text-gray-600 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
                   name={field.name}
                   rows={field.rows}
                   placeholder={field.placeholder}
@@ -73,7 +73,7 @@ import FIELDS_FORM from '@/consts/fieldsForm';
     }
     <button
       type="submit"
-      class="flex items-center justify-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-white transition-colors hover:bg-green-600"
+      class="font-montserrat flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-white transition-colors hover:bg-green-600"
     >
       <Icon name="whatsapp" />
       <span>Enviar consulta</span>
@@ -83,7 +83,7 @@ import FIELDS_FORM from '@/consts/fieldsForm';
   <div class="rounded-lg border border-green-200 bg-green-50 p-4">
     <div class="flex items-center gap-2">
       <Icon name="whatsapp" class="size-5 text-green-600" />
-      <span class="text-sm font-medium text-green-800"
+      <span class="text-sm font-semibold text-green-800"
         >Respuesta más rápida por WhatsApp</span
       >
     </div>
@@ -112,3 +112,11 @@ import FIELDS_FORM from '@/consts/fieldsForm';
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   });
 </script>
+
+<style>
+  input,
+  textarea,
+  select {
+    min-width: 0;
+  }
+</style>

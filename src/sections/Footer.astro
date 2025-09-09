@@ -13,7 +13,7 @@ import cn from '@/utils/cn';
 
 <footer class="bg-gray-900 text-white">
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <div class="grid gap-8 md:grid-cols-2">
+    <div class="grid gap-12 md:grid-cols-[auto_1fr] md:gap-8 lg:gap-12">
       {/* Logo and Description */}
       <div class="flow">
         <div class="flex items-center gap-2">
@@ -23,10 +23,10 @@ import cn from '@/utils/cn';
             <p class="text-gray-400 italic">Reparación y mantenimiento</p>
           </div>
         </div>
-        <p class="leading-relaxed text-gray-400 md:text-balance">
-          Somos especialistas en reparación de dispositivos electrónicos.
-          Garantía, calidad y atención personalizada en cada trabajo.
-        </p>
+        <div class="leading-relaxed text-gray-400">
+          <p>Somos especialistas en reparación de dispositivos electrónicos.</p>
+          <p>Garantía, calidad y atención personalizada en cada trabajo.</p>
+        </div>
         <ul class="flex gap-4">
           {
             [PHONE_INFO, IG_INFO].map(social => (
@@ -41,7 +41,7 @@ import cn from '@/utils/cn';
                   )}
                   aria-label={`Contactarme por ${social.name}`}
                 >
-                  <Icon name={social.icon} class="size-5" />
+                  <Icon name={social.icon} class="size-6" />
                 </a>
               </li>
             ))
@@ -49,10 +49,10 @@ import cn from '@/utils/cn';
         </ul>
       </div>
 
-      <div class="grid grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))] gap-4">
+      <div class="flex flex-wrap gap-4">
         {/* Services */}
         <div>
-          <h3 class="mb-0.5 font-semibold">Servicios</h3>
+          <h3 class="mb-0.5 text-lg font-semibold">Servicios</h3>
           <ul class="text-gray-400">
             {SERVICES.map(service => <li>{service.title}</li>)}
           </ul>
@@ -60,7 +60,7 @@ import cn from '@/utils/cn';
 
         {/* Schedules */}
         <div>
-          <h3 class="mb-0.5 font-semibold">Horarios</h3>
+          <h3 class="mb-0.5 text-lg font-semibold">Horarios</h3>
           <ul class="text-gray-400">
             {
               Array.isArray(SCHEDULE_INFO.data) &&
@@ -71,7 +71,7 @@ import cn from '@/utils/cn';
 
         {/* Contact */}
         <div>
-          <h3 class="mb-0.5 font-semibold">Contacto</h3>
+          <h3 class="mb-0.5 text-lg font-semibold">Contacto</h3>
           <ul class="text-gray-400">
             {
               [ADDRESS_INFO, PHONE_INFO, EMAIL_INFO].map(contactInfo => (
