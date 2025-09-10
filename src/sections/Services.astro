@@ -19,14 +19,16 @@ import Icon from '@/components/Icon.astro';
       {
         SERVICES.map(service => {
           return (
-            <div class="card flow rounded-xl border border-gray-300 bg-gradient-to-br from-gray-50 to-white p-6">
-              <div class="w-fit rounded-lg bg-blue-100 p-3">
-                <Icon name={service.icon} class="h-8 w-8 text-blue-600" />
+            <div class="card flow-2 rounded-xl border border-gray-300 bg-gradient-to-br from-gray-50 to-white p-6">
+              <div class="flex items-start gap-4">
+                <div class="w-fit rounded-lg bg-blue-100 p-3">
+                  <Icon name={service.icon} class="h-8 w-8 text-blue-600" />
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">
+                  {service.title}
+                </h3>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900">
-                {service.title}
-              </h3>
-              <p class="text-gray-600">{service.description}</p>
+              <p class="text-gray-600 italic">{service.description}</p>
               <ul class="flow-2">
                 {service.features.map(feature => (
                   <li class="flex items-center gap-2 text-sm text-gray-600">
