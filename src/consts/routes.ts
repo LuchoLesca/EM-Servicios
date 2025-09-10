@@ -35,4 +35,4 @@ export const ROUTES = [
     name: 'contacto',
     component: Contact,
   },
-];
+] as const;
