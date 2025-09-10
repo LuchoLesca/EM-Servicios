@@ -3,86 +3,64 @@ import Icon from '@/components/Icon.astro';
 import cn from '@/utils/cn';
 import { PHONE_INFO } from '@/consts/contactInfo';
 import { SERVICE_HIGHLIGHTS } from '@/consts/servicesHighlights';
-import { Image } from 'astro:assets';
-import heroImage from '/src/assets/imgs/hero-image.webp';
 ---
 
 <section {...Astro.props}>
-  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
-    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-      <div class="flow-6">
-        <h1
-          class="font-montserrat text-4xl font-bold text-balance text-gray-900 md:text-6xl"
+  <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+    <div class="flow-6 md:text-center">
+      <h1
+        class="font-montserrat text-4xl font-bold text-balance text-gray-900 md:text-6xl"
+      >
+        Reparación y Manteniemiento de
+        <span
+          class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
         >
-          Reparación y Manteniemiento de
-          <span
-            class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-          >
-            Electrónica</span
-          >
-          Profesional
-        </h1>
+          Electrónica</span
+        >
+        Profesional
+      </h1>
 
-        <p class="text-lg text-gray-600">
-          Especialistas en reparación de celulares, PlayStation, joysticks,
-          parlantes y notebooks. Diagnóstico gratuito y garantía en todos
-          nuestros trabajos.
-        </p>
+      <p class="text-lg text-balance text-gray-600">
+        Especialistas en reparación de celulares, PlayStation, joysticks,
+        parlantes y notebooks. Diagnóstico gratuito y garantía en todos nuestros
+        trabajos.
+      </p>
 
-        <div class="flex flex-wrap gap-4">
-          <a
-            href={PHONE_INFO.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class={cn(
-              'font-montserrat flex min-w-fit flex-1 transform items-center justify-center gap-2 rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105',
-              PHONE_INFO.styles.callToAction
-            )}
-          >
-            <Icon name="whatsapp" class="size-5" />
-            Consultar por WhatsApp
-          </a>
-          <a
-            href="#trabajos"
-            class="grid min-w-fit flex-1 place-content-center rounded-lg border border-blue-600 bg-white px-8 py-4 font-semibold text-blue-600 transition-colors hover:bg-gray-50"
-          >
-            Ver Trabajos Realizados
-          </a>
-        </div>
-
-        <div class="grid grid-cols-3 gap-8">
-          {
-            SERVICE_HIGHLIGHTS.map(feature => (
-              <div class="text-center">
-                <div class="mx-auto w-fit rounded-full bg-white p-3 shadow-md">
-                  <Icon name={feature.icon.name} class={feature.icon.styles} />
-                </div>
-                <div class="text-2xl font-bold text-gray-900">
-                  {feature.text1}
-                </div>
-                <div class="text-sm text-gray-600">{feature.text2}</div>
-              </div>
-            ))
-          }
-        </div>
+      <div class="flex flex-wrap gap-4 *:min-w-fit *:flex-1">
+        <a
+          href={PHONE_INFO.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class={cn(
+            'font-montserrat flex transform items-center justify-center gap-2 rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105',
+            PHONE_INFO.styles.callToAction
+          )}
+        >
+          <Icon name="whatsapp" class="size-5 shrink-0" />
+          Consultar por WhatsApp
+        </a>
+        <a
+          href="#trabajos"
+          class="flex items-center justify-center rounded-lg border border-blue-600 bg-white px-8 py-4 font-semibold text-blue-600 transition-colors hover:bg-gray-50"
+        >
+          Ver Trabajos Realizados
+        </a>
       </div>
 
-      <div class="relative">
-        <div class="rounded-2xl bg-white p-8 shadow-2xl">
-          <Image
-            src={heroImage}
-            role="presentation"
-            alt=""
-            class="rounded-lg object-cover"
-            widths={[240, 540, 720, heroImage.width]}
-            sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${heroImage.width}px`}
-          />
-          <div
-            class="absolute -top-4 -right-4 rounded-full bg-orange-500 p-4 text-white shadow-lg"
-          >
-            <span class="text-sm font-bold">¡Diagnóstico GRATIS!</span>
-          </div>
-        </div>
+      <div class="flex flex-wrap justify-center gap-8 *:min-w-[150px]">
+        {
+          SERVICE_HIGHLIGHTS.map(feature => (
+            <div class="flow-0.5 text-center">
+              <div class="mx-auto w-fit rounded-full bg-white p-3 shadow-lg">
+                <Icon name={feature.icon.name} class={feature.icon.styles} />
+              </div>
+              <div class="text-2xl font-bold text-gray-900">
+                {feature.text1}
+              </div>
+              <div class="text-sm text-gray-600">{feature.text2}</div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
