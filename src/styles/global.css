@@ -1,13 +1,11 @@
 @import 'tailwindcss';
 @import './fonts.css';
-/*@import './wrapper.css';*/
 
 @theme {
   --font-main: 'Inter', sans-serif;
   --font-mono: 'Space Mono', monospace;
 
-  --seed-brand: 0.6 0.15 45;
-  --seed-brand: 86.907% 0.28642 142.626;
+  --seed-brand: 87% 0.3 143;
   --seed-neutral: 0.75 0.02 260;
 
   --color-brand-primary: oklch(var(--seed-brand));

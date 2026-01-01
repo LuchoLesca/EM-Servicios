@@ -5,7 +5,7 @@ import heroImage from '@/assets/imgs/em-hero.png';
 ---
 
 <section
-  class="content overlay relative w-full overflow-hidden mask-b-from-75%"
+  class="content overlay relative w-full overflow-hidden mask-b-from-95%"
 >
   <!-- Background Elements -->
   <!-- <video
@@ -32,7 +32,7 @@ import heroImage from '@/assets/imgs/em-hero.png';
        </div> -->
 
   <!-- Content -->
-  <div class="">
+  <div class="isolate">
     <span
       class="reveal text-brand-highlight before:bg-brand-primary mb-6 flex items-center gap-4 font-mono text-xs tracking-[0.5em] uppercase delay-100 before:h-px before:w-10"
     >
@@ -104,15 +104,15 @@ import heroImage from '@/assets/imgs/em-hero.png';
     animation: traceFlow 8s infinite linear;
   }
 
-  /*.overlay {
-      isolation: isolate;
+  .overlay {
+    isolation: isolate;
 
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: color(from black srgb r g b / 0.8);
-        /*z-index: 1;
-      }
-    }*/
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /*background: black;*/
+      background: oklch(from var(--color-surface-base) l c h / 0.1);
+    }
+  }
 </style>
