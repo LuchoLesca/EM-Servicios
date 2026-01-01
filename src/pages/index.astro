@@ -1,58 +1,44 @@
 ---
+import '@/styles/global.css';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { ROUTES } from '@/consts/routes.ts';
-
-type RouteName = (typeof ROUTES)[number]['name'];
-
-type FilteredRoutesProps = {
-  routes: typeof ROUTES;
-} & (
-  | {
-      // Escenario 1: Se aplica un filtro
-      filterType: 'include' | 'exclude';
-      routesList: Array<RouteName>; // routesList es REQUERIDO
-    }
-  | {
-      // Escenario 2: No se aplica filtro
-      filterType?: null;
-      routesList?: never; // routesList NO debe pasarse
-    }
-);
-
-function FILTERED_ROUTES({
-  routes,
-  filterType,
-  routesList,
-}: FilteredRoutesProps) {
-  // Si no hay filterType, TypeScript sabe que estamos en el escenario 2
-  if (!filterType) {
-    return routes;
-  }
-
-  // Si llegamos aquí, TypeScript sabe que estamos en el escenario 1,
-  // por lo tanto, `filterType` es 'include' o 'exclude' y `routesList` EXISTE.
-  if (filterType === 'include') {
-    return routes.filter(route => routesList.includes(route.name));
-  }
-
-  if (filterType === 'exclude') {
-    return routes.filter(route => !routesList.includes(route.name));
-  }
-
-  return null;
-}
-
-const listOfRoutes: RouteName[] = ['trabajos', 'servicios', 'contacto'];
+import Hero from '@/sections/Hero.astro';
+import Services from '@/sections/Services.astro';
+import Process from '@/sections/Process.astro';
+import Contact from '@/sections/Contact.astro';
 ---
 
 <BaseLayout>
-  {
-    FILTERED_ROUTES({
-      routes: ROUTES,
-      // filterType: 'include',
-      // routesList: listOfRoutes,
-    })?.map(({ component: Component, id }) => (
-      <Component id={id} class="bg-white nth-of-type-[odd]:bg-gray-50" />
-    ))
-  }
+  <!-- Noise -->
+  <div
+    class="pointer-events-none fixed top-0 left-0 z-10 h-full w-full opacity-[0.04]"
+    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%270 0 200 200%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noiseFilter%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.65%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noiseFilter)%27/%3E%3C/svg%3E');"
+  >
+  </div>
+
+  <main class="content">
+    <Hero />
+    <Services />
+    <Process />
+    <Contact />
+  </main>
 </BaseLayout>
+
+<script>
+  // Intersection observer for scroll reveal
+  const observerOptions: IntersectionObserverInit = {
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.scroll-reveal').forEach(el => {
+    observer.observe(el);
+  });
+</script>

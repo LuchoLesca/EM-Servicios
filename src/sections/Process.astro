@@ -1,0 +1,37 @@
+---
+import { PROCESSES } from '@/consts/procces';
+---
+
+<section id="proceso">
+  <div
+    class="scroll-reveal text-brand-highlight mb-6 flex items-center gap-4 font-mono text-xs tracking-[0.4em] uppercase"
+  >
+    <span class="bg-brand-primary h-px w-10"></span>Proceso de Trabajo
+  </div>
+  <h2
+    class="scroll-reveal text-text-main mb-12 text-[clamp(2rem,5vw,3.5rem)] font-black uppercase"
+  >
+    Proceso de <span class="text-brand-primary">Restauración</span>
+  </h2>
+
+  <div class="mt-16 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-12">
+    {
+      PROCESSES.map((process, idx) => (
+        <div
+          class="scroll-reveal relative"
+          style={`transition-delay: ${idx * 0.2}s`}
+        >
+          <span class="text-text-main-ghost absolute -top-6 -right-4 z-0 font-mono text-[4rem] font-bold opacity-50">
+            {String(idx).padStart(2, '0')}
+          </span>
+          <div class="border-brand-primary relative z-1 border-l pl-6">
+            <h3 class="text-brand-highlight mb-2 text-xl">{process.title}</h3>
+            <p class="text-text-muted font-mono text-sm">
+              {process.description}
+            </p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,67 +1,118 @@
 ---
-import Icon from '@/components/Icon.astro';
-import cn from '@/utils/cn';
-import { PHONE_INFO } from '@/consts/contactInfo';
-import { SERVICE_HIGHLIGHTS } from '@/consts/servicesHighlights';
+import CTAButton from '@/components/CTAButton.astro';
+import { Image } from 'astro:assets';
+import heroImage from '@/assets/imgs/em-hero.png';
 ---
 
-<section {...Astro.props}>
-  <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
-    <div class="flow-6 md:flow-10 md:text-center">
-      <h1
-        class="font-montserrat text-4xl font-bold text-balance text-gray-900 md:text-6xl"
-      >
-        Reparación y Manteniemiento de
-        <span
-          class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-        >
-          Electrónica</span
-        >
-        Profesional
-      </h1>
+<section
+  class="content overlay relative w-full overflow-hidden mask-b-from-75%"
+>
+  <!-- Background Elements -->
+  <!-- <video
+         src={'src/assets/videos/video-1.mp4'}
+         class="absolute -z-10 inset-0 h-full w-full object-cover object-[top_50%_right_25%] opacity-50"
+         autoplay
+         muted
+         poster={heroImage.src}
+       >
+       </video> -->
+  <Image
+    src={heroImage}
+    alt=""
+    class="absolute inset-0 -z-10 h-full w-full object-cover object-[top_50%_right_25%] opacity-50"
+    priority
+  />
+  <!-- <div
+         class="pointer-events-none absolute inset-0 z-1 h-full w-full overflow-hidden opacity-60"
+         id="topo"
+       >
+         <div class="circuit-trace top-1/5 left-0 w-1/3"></div>
+         <div class="circuit-trace top-5/12 left-2/12 w-2/3 delay-200"></div>
+         <div class="circuit-trace top-4/5 -left-1/12 w-1/2 delay-500"></div>
+       </div> -->
 
-      <p class="text-lg text-balance text-gray-600">
-        Especialistas en reparación de celulares, PlayStation, joysticks,
-        parlantes y notebooks. Diagnóstico gratuito y garantía en todos nuestros
-        trabajos.
-      </p>
+  <!-- Content -->
+  <div class="">
+    <span
+      class="reveal text-brand-highlight before:bg-brand-primary mb-6 flex items-center gap-4 font-mono text-xs tracking-[0.5em] uppercase delay-100 before:h-px before:w-10"
+    >
+      Servicio Técnico
+    </span>
+    <h1
+      class="reveal mb-8 w-min text-5xl leading-[0.9] font-black -tracking-tighter uppercase delay-300 lg:text-[clamp(3.5rem,8vw,6.5rem)]"
+    >
+      Micro Soldadura Maestra.
+    </h1>
+    <!-- <h1
+           class="reveal mb-8 w-min bg-linear-to-r from-(--text-main) from-30% to-(--brand-primary) bg-clip-text text-5xl leading-[0.9] font-black -tracking-tighter text-transparent uppercase delay-300 lg:text-[clamp(3.5rem,8vw,6.5rem)]"
+         >
+           Micro Soldadura Maestra.
+         </h1> -->
+    <p
+      class="reveal text-text-muted border-brand-deep mb-12 grid max-w-[500px] border-l-2 pl-6 font-mono text-lg leading-relaxed delay-500"
+    >
+      <!-- <ul class="flex gap-2">
+             <li class="aspect-square size-2 border"></li>
+             <li class="aspect-square size-2 border"></li>
+             <li class="aspect-square size-2 border"></li>
+             <li class="aspect-square size-2 border"></li>
+           </ul> -->
+      Diagnóstico gratuito y garantía en todos nuestros trabajos.
+    </p>
 
-      <div class="flex flex-wrap gap-4 *:min-w-fit *:flex-1">
-        <a
-          href={PHONE_INFO.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={cn(
-            'font-montserrat flex transform items-center justify-center gap-2 rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105',
-            PHONE_INFO.styles.callToAction
-          )}
-        >
-          <Icon name="whatsapp" class="size-5 shrink-0" />
-          Consultar por WhatsApp
-        </a>
-        <a
-          href="#trabajos"
-          class="flex items-center justify-center rounded-lg border border-blue-600 bg-white px-8 py-4 font-semibold text-blue-600 transition-colors hover:bg-gray-50"
-        >
-          Ver Trabajos Realizados
-        </a>
-      </div>
-
-      <div class="flex flex-wrap justify-center gap-8 *:min-w-[150px]">
-        {
-          SERVICE_HIGHLIGHTS.map(feature => (
-            <div class="flow-0.5 text-center">
-              <div class="mx-auto w-fit rounded-full bg-white p-3 shadow-lg">
-                <Icon name={feature.icon.name} class={feature.icon.styles} />
-              </div>
-              <div class="text-2xl font-bold text-gray-900">
-                {feature.text1}
-              </div>
-              <div class="text-sm text-gray-600">{feature.text2}</div>
-            </div>
-          ))
-        }
-      </div>
+    <div class="reveal flex max-w-3xl flex-wrap gap-8 delay-700">
+      <CTAButton href="#contacto" icon="whatsapp" label="Contactar Técnico" />
+      <CTAButton
+        href="https://instagram.com/em_servicio_tecnico"
+        icon="instagram"
+        label="Ver Trabajos"
+        target="_blank"
+        rel="noopener noreferrer"
+      />
     </div>
   </div>
 </section>
+
+<style>
+  /* KEYFRAMES */
+  @keyframes traceFlow {
+    0% {
+      transform: translateX(-100%) scaleX(0.5);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(200%) scaleX(1.5);
+      opacity: 0;
+    }
+  }
+
+  /* Circuit Trace */
+  .circuit-trace {
+    position: absolute;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-brand-primary),
+      transparent
+    );
+    height: 1px;
+    filter: drop-shadow(0 0 8px var(--color-brand-highlight));
+    animation: traceFlow 8s infinite linear;
+  }
+
+  /*.overlay {
+      isolation: isolate;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: color(from black srgb r g b / 0.8);
+        /*z-index: 1;
+      }
+    }*/
+</style>

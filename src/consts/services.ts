@@ -1,48 +1,46 @@
-import { type Service } from '@/types/service';
-
-export const SERVICES: Service[] = [
+export const SERVICES = [
   {
-    icon: 'smartphone',
-    title: 'Reparación de Celulares',
-    description: 'Pantallas, baterías, cámaras, conectores de carga y más.',
-    features: [
+    title: 'Celulares',
+    subtitle: 'Pantallas, baterías, cámaras, conectores de carga y más.',
+    items: [
       'Cambio de pantalla',
       'Reparación de batería',
       'Problemas de software',
       'Liberación de equipos',
     ],
+    icon: 'smartphone',
   },
   {
-    icon: 'gamepad-2',
     title: 'PlayStation y Joysticks',
-    description: 'Reparación completa de consolas y controles de videojuegos.',
-    features: [
+    subtitle: 'Reparación completa de consolas y controles de videojuegos.',
+    items: [
       'PlayStation 4/5',
       'Joysticks analógicos',
       'Problemas de lectura',
       'Limpieza profunda',
     ],
+    icon: 'gamepad-2',
   },
   {
-    icon: 'volume-2',
     title: 'Parlantes y Audio',
-    description: 'Reparación de equipos de sonido y sistemas de audio.',
-    features: [
+    subtitle: 'Reparación de equipos de sonido y sistemas de audio.',
+    items: [
       'Parlantes Bluetooth',
       'Sistemas de sonido',
       'Amplificadores',
       'Conectividad',
     ],
+    icon: 'volume-2',
   },
   {
-    icon: 'laptop',
     title: 'Notebooks y Laptops',
-    description: 'Solución a problemas de hardware y software en notebooks.',
-    features: [
+    subtitle: 'Solución a problemas de hardware y software en notebooks.',
+    items: [
       'Pantallas LCD/LED',
       'Teclados',
       'Carga de batería',
       'Formateo y limpieza',
     ],
+    icon: 'laptop',
   },
 ];

@@ -1,9 +1,40 @@
 @import 'tailwindcss';
 @import './fonts.css';
+/*@import './wrapper.css';*/
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
-  --font-montserrat: 'Montserrat', sans-serif;
+  --font-main: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --seed-brand: 0.6 0.15 45;
+  --seed-brand: 86.907% 0.28642 142.626;
+  --seed-neutral: 0.75 0.02 260;
+
+  --color-brand-primary: oklch(var(--seed-brand));
+  --color-brand-highlight: oklch(
+    from var(--color-brand-primary) calc(l + 0.15) c h
+  );
+  --color-brand-deep: oklch(from var(--color-brand-primary) calc(l - 0.25) c h);
+  --color-brand-glow: oklch(from var(--color-brand-primary) l c h / 0.4);
+  --color-brand-ghost: oklch(from var(--color-brand-primary) l c h / 0.1);
+
+  --color-surface-base: oklch(from var(--color-brand-primary) 0.05 0.01 h);
+  --color-surface-card: oklch(
+    from var(--color-surface-base) calc(l + 0.03) c h
+  );
+  --color-surface-input: oklch(
+    from var(--color-surface-base) calc(l + 0.08) c h
+  );
+  --color-surface-card-subtle: oklch(
+    from var(--color-surface-card) l c h / 0.6
+  );
+
+  --color-text-main: oklch(1 0 0);
+  --color-text-main-ghost: oklch(from var(--color-text-main) l c h / 0.1);
+  --color-text-muted: oklch(var(--seed-neutral));
+  --color-text-inverse: oklch(from var(--color-brand-primary) 0.1 0.1 h);
+
+  --shadow-dark: oklch(0 0 0 / 0.8);
 }
 
 @layer base {
@@ -12,6 +43,25 @@
     min-height: 100dvh;
     display: grid;
     grid-template-rows: auto 1fr auto;
+  }
+
+  /* Animation Classes */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+
+    &.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  main > section {
+    padding-block: 3rem;
+    @media screen and (width > 48rem) {
+      padding-block: 7rem;
+    }
   }
 
   img {
@@ -29,6 +79,13 @@
 
   a {
     display: inline-block;
+  }
+
+  .content > * {
+    --padding-inline: 1rem;
+    --max-width: 80rem;
+    width: min(var(--max-width), 100% - var(--padding-inline) * 2);
+    margin-inline: auto;
   }
 }
 

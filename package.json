@@ -12,9 +12,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "type-check": "astro check",
-    "check:all": "npm run type-check && npm run lint && npm run format:check",
-    "generate:images": "node ./src/js/scripts/transform-imgs.mjs",
-    "normalize-file-names": "node ./src/scipts/normalize-file-name.js"
+    "check:all": "npm run type-check && npm run lint && npm run format:check"
   },
   "dependencies": {
     "@tailwindcss/typography": "0.5.16",
@@ -22,8 +20,6 @@
     "astro": "5.12.4",
     "astro-icon": "1.1.5",
     "clsx": "2.1.1",
-    "embla-carousel": "8.6.0",
-    "embla-carousel-auto-scroll": "8.6.0",
     "tailwind-merge": "3.3.1",
     "tailwindcss": "4.1.11"
   },
@@ -39,8 +35,6 @@
     "prettier": "3.6.2",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.6.14",
-    "sharp": "0.34.3",
-    "svg-symbol-sprite": "1.5.2",
     "typescript": "5.8.3"
   }
 }

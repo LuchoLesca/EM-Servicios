@@ -1,88 +1,170 @@
 ---
 import Icon from '@/components/Icon.astro';
-import {
-  IG_INFO,
-  PHONE_INFO,
-  ADDRESS_INFO,
-  SCHEDULE_INFO,
-  EMAIL_INFO,
-} from '@/consts/contactInfo';
-import cn from '@/utils/cn';
-import Form from '@/components/Form.astro';
+import { CONTACT_INFO } from '@/consts/contact';
 ---
 
-<section {...Astro.props}>
-  <div class="flow-12 mx-auto max-w-7xl p-12 px-4 sm:px-6 lg:px-8">
-    <div class="grid justify-items-center gap-4 text-center">
-      <h2 class="text-3xl font-bold text-gray-900 md:text-4xl">Contactanos</h2>
-      <p class="max-w-3xl text-xl text-gray-600">
-        Estamos aquí para ayudarte. Contáctanos por WhatsApp, Instagram o
-        visitanos en nuestro taller.
+<section id="contacto">
+  <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+    <div class="scroll-reveal font-mono">
+      <div
+        class="text-brand-highlight mb-6 flex items-center gap-4 font-mono text-xs tracking-[0.4em] uppercase"
+      >
+        <span class="bg-brand-primary h-px w-10"></span>Contactanos
+      </div>
+      <h2
+        class="text-text-main mb-8 text-[clamp(2rem,5vw,3.5rem)] leading-tight font-black uppercase"
+      >
+        Inicia tu <br /><span class="text-brand-primary">Reparación</span>
+      </h2>
+      <p
+        class="text-text-muted border-brand-deep mb-8 max-w-[500px] border-l-2 pl-6 font-mono text-lg leading-relaxed"
+      >
+        Contáctanos por <a
+          href={`https://wa.me/${CONTACT_INFO.find(contact => contact.name === 'phone')?.details[0]}?text=${encodeURIComponent('Hola, estoy teniendo problemas con mi dispositivo')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-text-main underline underline-offset-4">WhatsApp</a
+        >, <a
+          href="https://instagram.com/em_servicio_tecnico"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-text-main underline underline-offset-4">Instagram</a
+        >, o en nuestro taller
       </p>
+
+      <!-- Contact Info Cards -->
+      <div
+        class="grid grid-cols-[repeat(auto-fit,minmax(min(260px,100%),max-content))] gap-8"
+      >
+        {
+          CONTACT_INFO.map((info, index) => (
+            <div
+              class="scroll-reveal space-y-1"
+              style={`transition-delay: ${index * 0.1}s`}
+            >
+              <div class="flex gap-3">
+                <Icon
+                  name={info.icon}
+                  class="text-brand-primary size-6 shrink-0"
+                />
+                <h4 class="text-text-main mb-1 font-bold">{info.title}</h4>
+              </div>
+              <div class="text-text-muted space-y-1 text-sm">
+                {info.details.map(detail => (
+                  <p>{detail}</p>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
 
-    <div class="grid items-start gap-12 lg:grid-cols-2">
-      <div class="flow-6">
-        <h3 class="text-2xl font-bold text-gray-900">
-          Información de Contacto
-        </h3>
-
-        <div
-          class="grid justify-start gap-x-8 gap-y-4 sm:grid-cols-[auto_auto] lg:grid-cols-1"
-        >
-          {
-            [ADDRESS_INFO, PHONE_INFO, SCHEDULE_INFO, EMAIL_INFO].map(
-              contact => (
-                <div class="flex items-start gap-4">
-                  <div class={cn('rounded-lg p-3', contact.styles.base)}>
-                    <Icon name={contact.icon} />
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-gray-900 capitalize">
-                      {contact.name}
-                    </h4>
-                    <ul class="text-gray-600">
-                      {Array.isArray(contact.data) ? (
-                        contact.data.map(item => <li>{item}</li>)
-                      ) : (
-                        <li>{contact.data}</li>
-                      )}
-                    </ul>
-                  </div>
-                </div>
-              )
-            )
-          }
-        </div>
-
-        <div class="flow border-t border-gray-200 pt-4">
-          <h4 class="font-semibold text-gray-900">
-            Seguinos en nuestras redes
-          </h4>
-          <ul class="flex gap-4">
-            {
-              [PHONE_INFO, IG_INFO].map(social => (
-                <li>
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class={cn(
-                      'rounded-lg p-3 text-white transition-colors',
-                      social.styles.callToAction
-                    )}
-                    aria-label={`Contactarme por ${social.name}`}
-                  >
-                    <Icon name={social.icon} />
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+    <div
+      class="scroll-reveal border-text-main-ghost bg-surface-card relative border p-6 lg:p-12"
+    >
+      <div
+        class="border-brand-primary absolute right-[-5px] bottom-[-5px] h-5 w-5 border-r-2 border-b-2"
+      >
       </div>
+      <form name="contact-form">
+        <div class="mb-6">
+          <label
+            for="device-input"
+            class="text-text-muted mb-2 block font-mono text-xs"
+            >DISPOSITIVO ID</label
+          >
+          <input
+            id="device-input"
+            name="device"
+            class="border-text-main-ghost bg-surface-input text-text-main focus:border-brand-primary w-full border px-4 py-4 transition-colors duration-300 outline-none"
+            type="text"
+            placeholder="Ej: iPhone 13 Pro Max"
+            pattern="[\w\s\-\.]+"
+            minlength="3"
+            required
+          />
+        </div>
+        <div class="mb-6">
+          <label
+            for="description-input"
+            class="text-text-muted mb-2 block font-mono text-xs"
+            >DESCRIPCIÓN DE LA FALLA</label
+          >
+          <textarea
+            id="description-input"
+            name="description"
+            class="border-text-main-ghost bg-surface-input text-text-main focus:border-brand-primary w-full border px-4 py-4 transition-colors duration-300 outline-none"
+            rows="4"
+            placeholder="No enciende, pantalla rota..."
+            minlength="10"
+            required></textarea>
+        </div>
+        <button
+          class="hover:bg-brand-primary border-brand-primary text-text-main relative inline-flex w-full cursor-pointer items-center justify-center gap-3 overflow-hidden border bg-transparent px-10 py-[1.2rem] font-mono font-bold tracking-widest uppercase transition-colors duration-500 hover:-translate-y-0.5 hover:border-(--brand-highlight) hover:text-(--text-inverse) hover:shadow-[0_0_30px_var(--color-brand-glow)]"
+          type="submit"
+        >
+          Enviar Mensaje
+        </button>
 
-      <Form />
+        <div class="bg-brand-ghost mt-6 p-4">
+          <div class="mb-2 flex items-center gap-3">
+            <Icon name="whatsapp" class="text-brand-primary size-5 shrink-0" />
+            <p
+              class="text-brand-primary font-mono text-xs font-bold tracking-wider uppercase"
+            >
+              Respuesta más rápida por WhatsApp
+            </p>
+          </div>
+          <p class="text-text-muted mt-1 font-mono text-xs opacity-80">
+            Para una atención más inmediata, escríbenos directamente por
+            WhatsApp
+          </p>
+        </div>
+      </form>
     </div>
   </div>
 </section>
+
+<style>
+  .glow {
+    --clr: rgb(0 250 0);
+    --glow-blur: 12px;
+    --glow-opacity: 0.7;
+    --glow-intensity: 1;
+
+    text-shadow:
+      0 0 calc(var(--glow-blur) * var(--glow-intensity))
+        rgb(from var(--clr) r g b / var(--glow-opacity)),
+      0 0 calc(var(--glow-blur) * 1.5 * var(--glow-intensity))
+        rgb(from var(--clr) r g b / calc(var(--glow-opacity) * 0.6)),
+      0 0 calc(var(--glow-blur) * 2 * var(--glow-intensity))
+        rgb(from var(--clr) r g b / calc(var(--glow-opacity) * 0.3));
+  }
+</style>
+
+<script>
+  import { WHATSAPP_NUMBER } from '@/consts/contact';
+
+  // Form WhatsApp Send Message
+  const contactForm: HTMLFormElement | null = document.querySelector(
+    'form[name="contact-form"]'
+  );
+
+  contactForm?.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const device = formData.get('device');
+    const description = formData.get('description');
+
+    const message = `Hola, quisiera reparar:\n\n*Dispositivo:* ${device}\n*Problema:* ${description}`;
+    const whatsappNumber = WHATSAPP_NUMBER;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+
+    contactForm.reset();
+  });
+</script>
