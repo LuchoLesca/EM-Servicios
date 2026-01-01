@@ -1,9 +1,10 @@
 ---
 import Icon from '@/components/Icon.astro';
 import { CONTACT_INFO } from '@/consts/contact';
+import SectionLayout from '@/layouts/SectionLayout.astro';
 ---
 
-<section id="contacto">
+<SectionLayout id="contacto">
   <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
     <div class="scroll-reveal font-mono">
       <div
@@ -124,7 +125,7 @@ import { CONTACT_INFO } from '@/consts/contact';
       </form>
     </div>
   </div>
-</section>
+</SectionLayout>
 
 <style>
   .glow {

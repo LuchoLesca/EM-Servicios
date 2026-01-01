@@ -1,9 +1,10 @@
 ---
 import Icon from '@/components/Icon.astro';
 import { SERVICES } from '@/consts/services';
+import SectionLayout from '@/layouts/SectionLayout.astro';
 ---
 
-<section id="servicios">
+<SectionLayout id="servicios">
   <div
     class="scroll-reveal text-brand-highlight mb-6 flex items-center gap-4 font-mono text-xs tracking-[0.4em] uppercase"
   >
@@ -46,7 +47,7 @@ import { SERVICES } from '@/consts/services';
       ))
     }
   </div>
-</section>
+</SectionLayout>
 
 <style>
   /* Card Hover Effect */

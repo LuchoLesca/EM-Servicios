@@ -55,13 +55,6 @@
     }
   }
 
-  main > section {
-    padding-block: 3rem;
-    @media screen and (width > 48rem) {
-      padding-block: 7rem;
-    }
-  }
-
   img {
     font-style: italic;
     background-repeat: no-repeat;

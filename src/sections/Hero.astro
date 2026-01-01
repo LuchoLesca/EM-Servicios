@@ -2,9 +2,10 @@
 import CTAButton from '@/components/CTAButton.astro';
 import { Image } from 'astro:assets';
 import heroImage from '@/assets/imgs/em-hero.png';
+import SectionLayout from '@/layouts/SectionLayout.astro';
 ---
 
-<section
+<SectionLayout
   class="content overlay relative w-full overflow-hidden mask-b-from-95%"
 >
   <!-- Background Elements -->
@@ -60,7 +61,7 @@ import heroImage from '@/assets/imgs/em-hero.png';
       />
     </div>
   </div>
-</section>
+</SectionLayout>
 
 <style>
   /* KEYFRAMES */
