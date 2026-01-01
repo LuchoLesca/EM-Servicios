@@ -43,20 +43,9 @@ import heroImage from '@/assets/imgs/em-hero.png';
     >
       Micro Soldadura Maestra.
     </h1>
-    <!-- <h1
-           class="reveal mb-8 w-min bg-linear-to-r from-(--text-main) from-30% to-(--brand-primary) bg-clip-text text-5xl leading-[0.9] font-black -tracking-tighter text-transparent uppercase delay-300 lg:text-[clamp(3.5rem,8vw,6.5rem)]"
-         >
-           Micro Soldadura Maestra.
-         </h1> -->
     <p
-      class="reveal text-text-muted border-brand-deep mb-12 grid max-w-[500px] border-l-2 pl-6 font-mono text-lg leading-relaxed delay-500"
+      class="reveal text-text-muted border-brand-deep bg-surface-base/50 md mb-12 grid max-w-[500px] rounded-r-xs border-l-2 p-2 pl-6 font-mono text-lg leading-relaxed backdrop-blur-md delay-500"
     >
-      <!-- <ul class="flex gap-2">
-             <li class="aspect-square size-2 border"></li>
-             <li class="aspect-square size-2 border"></li>
-             <li class="aspect-square size-2 border"></li>
-             <li class="aspect-square size-2 border"></li>
-           </ul> -->
       Diagnóstico gratuito y garantía en todos nuestros trabajos.
     </p>
 
@@ -105,14 +94,18 @@ import heroImage from '@/assets/imgs/em-hero.png';
   }
 
   .overlay {
+    --opacity: 0.3;
     isolation: isolate;
 
     &::before {
       content: '';
       position: absolute;
       inset: 0;
-      /*background: black;*/
-      background: oklch(from var(--color-surface-base) l c h / 0.1);
+      background: oklch(from var(--color-surface-base) l c h / var(--opacity));
+    }
+
+    @media (width > 48rem) {
+      --opacity: 0;
     }
   }
 </style>
