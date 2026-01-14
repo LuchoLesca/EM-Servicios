@@ -20,17 +20,19 @@ import SectionLayout from '@/layouts/SectionLayout.astro';
       <p
         class="text-text-muted border-brand-deep mb-8 max-w-[500px] border-l-2 pl-6 font-mono text-lg leading-relaxed"
       >
-        Contáctanos por <a
+        Contactanos por <a
           href={`https://wa.me/${CONTACT_INFO.find(contact => contact.name === 'phone')?.details[0]}?text=${encodeURIComponent('Hola, estoy teniendo problemas con mi dispositivo')}`}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-text-main underline underline-offset-4">WhatsApp</a
-        >, <a
+          class="text-text-main hover:text-shadow-brand-glow underline underline-offset-4 hover:text-shadow-sm"
+          >WhatsApp
+        </a>, <a
           href="https://instagram.com/em_servicio_tecnico"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-text-main underline underline-offset-4">Instagram</a
-        >, o en nuestro taller
+          class="text-text-main hover:text-shadow-brand-glow underline underline-offset-4 hover:text-shadow-sm"
+          >Instagram
+        </a>, o en nuestro taller
       </p>
 
       <!-- Contact Info Cards -->
@@ -48,9 +50,11 @@ import SectionLayout from '@/layouts/SectionLayout.astro';
                   name={info.icon}
                   class="text-brand-primary size-6 shrink-0"
                 />
-                <h4 class="text-text-main mb-1 font-bold">{info.title}</h4>
+                <h4 class="text-text-main mb-1 font-bold lg:text-lg">
+                  {info.title}
+                </h4>
               </div>
-              <div class="text-text-muted space-y-1 text-sm">
+              <div class="text-text-muted space-y-1 text-sm lg:text-base">
                 {info.details.map(detail => (
                   <p>{detail}</p>
                 ))}
@@ -72,8 +76,8 @@ import SectionLayout from '@/layouts/SectionLayout.astro';
         <div class="mb-6">
           <label
             for="device-input"
-            class="text-text-muted mb-2 block font-mono text-xs"
-            >DISPOSITIVO ID</label
+            class="text-text-muted mb-2 block font-mono text-xs lg:text-base"
+            >DISPOSITIVO</label
           >
           <input
             id="device-input"
@@ -89,9 +93,10 @@ import SectionLayout from '@/layouts/SectionLayout.astro';
         <div class="mb-6">
           <label
             for="description-input"
-            class="text-text-muted mb-2 block font-mono text-xs"
-            >DESCRIPCIÓN DE LA FALLA</label
+            class="text-text-muted mb-2 block font-mono text-xs lg:text-base"
           >
+            DESCRIPCIÓN
+          </label>
           <textarea
             id="description-input"
             name="description"
@@ -112,37 +117,22 @@ import SectionLayout from '@/layouts/SectionLayout.astro';
           <div class="mb-2 flex items-center gap-3">
             <Icon name="whatsapp" class="text-brand-primary size-5 shrink-0" />
             <p
-              class="text-brand-primary font-mono text-xs font-bold tracking-wider uppercase"
+              class="text-brand-primary font-mono text-xs font-bold tracking-wider uppercase lg:text-base"
             >
-              Respuesta más rápida por WhatsApp
+              Contacta por WhatsApp
             </p>
           </div>
-          <p class="text-text-muted mt-1 font-mono text-xs opacity-80">
-            Para una atención más inmediata, escríbenos directamente por
-            WhatsApp
+          <p
+            class="text-text-muted mt-1 font-mono text-xs opacity-80 lg:text-sm"
+          >
+            Al enviar, redirige WhatsApp con los datos precargados en el
+            mensaje, para mayor comodidad.
           </p>
         </div>
       </form>
     </div>
   </div>
 </SectionLayout>
-
-<style>
-  .glow {
-    --clr: rgb(0 250 0);
-    --glow-blur: 12px;
-    --glow-opacity: 0.7;
-    --glow-intensity: 1;
-
-    text-shadow:
-      0 0 calc(var(--glow-blur) * var(--glow-intensity))
-        rgb(from var(--clr) r g b / var(--glow-opacity)),
-      0 0 calc(var(--glow-blur) * 1.5 * var(--glow-intensity))
-        rgb(from var(--clr) r g b / calc(var(--glow-opacity) * 0.6)),
-      0 0 calc(var(--glow-blur) * 2 * var(--glow-intensity))
-        rgb(from var(--clr) r g b / calc(var(--glow-opacity) * 0.3));
-  }
-</style>
 
 <script>
   import { WHATSAPP_NUMBER } from '@/consts/contact';

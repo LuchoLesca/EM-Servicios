@@ -15,10 +15,8 @@ import CTAButton from '@/components/CTAButton.astro';
     <section
       class="flex flex-col items-center justify-center gap-4 py-20 text-center md:py-32"
     >
-      <!-- Logo con glow verde -->
-      <Icon name="logo-outline" class="text-brand-primary logox size-40" />
+      <Icon name="logo-outline" class="text-brand-primary logo size-40" />
 
-      <!-- Texto de error -->
       <div class="space-y-2">
         <h1 class="text-text-main text-6xl font-bold md:text-7xl">404</h1>
         <p
@@ -28,14 +26,15 @@ import CTAButton from '@/components/CTAButton.astro';
         </p>
       </div>
 
-      <!-- Descripción -->
       <p class="text-text-muted max-w-md leading-relaxed">
         Parece que la página que estás buscando no existe o fue movida. No te
         preocupes, podemos ayudarte a volver.
       </p>
 
-      <!-- Botón para volver -->
-      <CTAButton href="/" icon="arrow-left" label="Volver al inicio" />
+      <CTAButton href="/">
+        <Icon name="arrow-left" class="size-5 shrink-0 lg:size-8 lg:gap-4" />
+        Volver al inicio
+      </CTAButton>
     </section>
   </main>
 </BaseLayout>
@@ -98,7 +97,7 @@ import CTAButton from '@/components/CTAButton.astro';
     }
   }
 
-  .logox {
+  .logo {
     --duration: 3s;
     --intensity-duration: var(--duration);
     --glow-duration: var(--duration);

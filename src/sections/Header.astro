@@ -1,6 +1,5 @@
 ---
 import Icon from '@/components/Icon.astro';
-import Logo from '../assets/icons/logo.svg?raw';
 
 const NAV_ITEMS = [
   {
@@ -44,7 +43,7 @@ const NAV_ITEMS = [
         NAV_ITEMS.map(item => (
           <a
             href={item.href}
-            class="text-text-muted hover:text-brand-highlight px-4 py-2 font-mono text-base transition-colors duration-300"
+            class="text-text-muted hover:text-brand-highlight px-4 py-2 font-mono text-base transition-colors duration-300 lg:text-lg"
           >
             {item.label}
           </a>
@@ -98,7 +97,7 @@ const NAV_ITEMS = [
         NAV_ITEMS.map(item => (
           <a
             href={item.href}
-            class="text-text-muted hover:text-brand-highlight block py-4 font-mono text-base transition-colors duration-300"
+            class="text-text-muted hover:text-brand-highlight block py-4 font-mono text-base transition-colors duration-300 lg:text-lg"
           >
             {item.label}
           </a>

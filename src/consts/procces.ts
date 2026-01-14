@@ -1,7 +1,8 @@
 export const PROCESSES = [
   {
     title: 'Contacto',
-    description: 'Te atendemos por WhatsApp o Instagram. Cuéntanos qué le ocurre a tu dispositivo y coordina la entrega con nosotros.',
+    description:
+      'Te atendemos por WhatsApp o Instagram. Contanos qué le pasó a tu dispositivo y coordina la entrega con nosotros.',
   },
   {
     title: 'Diagnóstico',
@@ -16,6 +17,6 @@ export const PROCESSES = [
   {
     title: 'Verificación',
     description:
-      'Validamos que todo funcione perfectamente antes de entregarla.',
+      'Validamos que todo funcione perfectamente antes de devolvértelo.',
   },
 ];
