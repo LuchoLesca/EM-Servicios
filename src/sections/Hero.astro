@@ -1,6 +1,8 @@
 ---
 import CTAButton from '@/components/CTAButton.astro';
-import heroImage from '@/assets/imgs/em-hero.webp';
+import heroImage from '@/assets/imgs/hero.webp';
+import heroPoster from '@/assets/imgs/hero-poster.webp?url';
+import heroVideo from '@/assets/videos/hero.webm?url';
 import SectionLayout from '@/layouts/SectionLayout.astro';
 import Icon from '@/components/Icon.astro';
 ---
@@ -10,11 +12,11 @@ import Icon from '@/components/Icon.astro';
 >
   <!-- Background Elements -->
   <video
-    src={'src/assets/videos/hero.webm'}
-    class="absolute inset-0 -z-10 h-full w-full object-cover object-[top_50%_right_0] opacity-50"
+    src={heroVideo}
+    class="absolute inset-0 -z-10 h-full w-full object-cover object-right opacity-50"
     autoplay
     muted
-    poster={heroImage.src}
+    poster={heroPoster}
   >
   </video>
   <!-- <Image
