@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@astrojs/check':
-        specifier: ^0.9.6
+        specifier: 0.9.6
         version: 0.9.6(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.8.3)
       '@tailwindcss/typography':
         specifier: 0.5.16
@@ -27,7 +27,7 @@ importers:
         specifier: 2.1.1
         version: 2.1.1
       sharp:
-        specifier: ^0.34.5
+        specifier: 0.34.5
         version: 0.34.5
       tailwind-merge:
         specifier: 3.3.1
@@ -46,7 +46,7 @@ importers:
         specifier: 8.38.0
         version: 8.38.0(eslint@9.32.0(jiti@2.6.1))(typescript@5.8.3)
       astro-eslint-parser:
-        specifier: ^1.2.2
+        specifier: 1.2.2
         version: 1.2.2
       eslint:
         specifier: 9.32.0
