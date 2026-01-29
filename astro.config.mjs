@@ -6,6 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 import icon from 'astro-icon';
 
+import partytown from '@astrojs/partytown';
+
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
@@ -15,6 +17,12 @@ export default defineConfig({
   integrations: [
     icon({
       iconDir: 'src/assets/icons',
+    }),
+    partytown({
+      config: {
+        // Add the "dataLayer.push" as a forwarding-event.
+        forward: ['dataLayer.push'],
+      },
     }),
   ],
 });
